@@ -1,4 +1,0 @@
-app_routing_folder:
-    # loads routes from the given routing file stored in some bundle
-    resource: 'routing\' 
-    type: directory

@@ -1,4 +1,4 @@
-# Purpose of the Demo - Webpack Encore
+# Purpose of the Demo - Webpack Encore Using Sass
 
 We will make an installation from the beginning where we will include the **Webpack Encore** and **Sass**.
 

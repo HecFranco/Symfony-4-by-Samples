@@ -1,0 +1,6 @@
+# config/routes.yaml
+# the "app_frist_index" route name is not important yet
+index:
+    # default route
+    path: /
+    controller: App\Controller\DefaultController::index
