@@ -1,0 +1,4 @@
+# Important in the files with extension .yaml each bleeding equals 4 spaces!!!!
+index:
+    path: /
+    controller: App\Controller\DefaultController::index

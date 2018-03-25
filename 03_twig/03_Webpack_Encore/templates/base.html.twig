@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# add next line .............................................................................. #}
+            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {# add add previous line line ................................................................. #}
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {# add next line .............................................................................. #}
+            <script src="{{ asset('build/app.js') }}"></script>
+        {# add add previous line line ................................................................. #}            
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
