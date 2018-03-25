@@ -80,4 +80,4 @@ class DefaultController {
 php bin/console server:run
 ```
 
-5. Finally, you will have to click on the following link [127.0.0.1:8000](127.0.0.1:8000) to see your installation project.
+5. Finally, you will have to click on the following link [http://127.0.0.1:8000](http://127.0.0.1:8000) to see your installation project.

@@ -96,7 +96,7 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-9. Now we can see the results if we click on [127.0.0.1:8000](127.0.0.1:8000).
+9. Now we can see the results if we click on [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 10. Next step, we created [assets/css/app.scss](assets/css/app.scss).
 
@@ -172,7 +172,7 @@ _[templates/base.html.twig](templates/base.html.twig)_
 </html>
 ```
 
-Now we can access [127.0.0.1:8000](127.0.0.1:8000) again expecting to see our brand new corporate colors in the message we have written, but we will find two 404 errors corresponding to the [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) files that we just included in our base template.
+Now we can access [http://127.0.0.1:8000](http://127.0.0.1:8000) again expecting to see our brand new corporate colors in the message we have written, but we will find two 404 errors corresponding to the [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) files that we just included in our base template.
 
 To correct the errors we must launch the following command that will generate the files from the ones we created in the assets folder.
 
@@ -187,3 +187,5 @@ npm run watch
 ```bash
 php bin/console server:run
 ```
+
+5. Finally, you will have to click on the following link [http://127.0.0.1:8000](http://127.0.0.1:8000) to see your installation project.

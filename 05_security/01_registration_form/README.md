@@ -397,8 +397,10 @@ _[templates/registration/register.html.twig](templates/registration/register.htm
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-16. Finally you can view the result of demo when write in the terminal the command console:
+16. You can view the result of demo when write in the terminal the command console:
 
 ```bash
 php bin/console server:run
 ```
+
+5. Finally, you will have to click on the following link [http://127.0.0.1:8000/register](http://127.0.0.1:8000/register) to see your installation project.

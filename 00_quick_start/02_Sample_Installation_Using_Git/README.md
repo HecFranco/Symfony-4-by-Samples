@@ -94,4 +94,4 @@ git push Symfony-4-Test master
 php bin/console server:run
 ```
 
-5. Finally, you will have click in next link [127.0.0.1:8000](127.0.0.1:8000) to view your installation project.
+5. Finally, you will have click in next link [http://127.0.0.1:8000](http://127.0.0.1:8000) to view your installation project.
