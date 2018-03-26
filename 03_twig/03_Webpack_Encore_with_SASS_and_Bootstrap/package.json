@@ -11,7 +11,10 @@
         "build": "encore production"
     },
     "dependencies": {
+        "bootstrap-sass": "^3.3.7",
+        "jquery": "^3.3.1",
         "node-sass": "^4.8.3",
+        "popper.js": "^1.14.1",
         "sass-loader": "^6.0.7"
     }
 }

@@ -1,4 +1,4 @@
-# Purpose of the Demo - Webpack Encore Using Sass
+# Purpose of the Demo - 03_Webpack_Encore_with_SASS
 
 We will make an installation from the beginning where we will include the **Webpack Encore** and **Sass**.
 
@@ -20,18 +20,18 @@ We will make an installation from the beginning where we will include the **Webp
 * Npm.js Component, `npm install @symfony/webpack-encore --save-dev`
 * Npm.js Sass and node Sass Component, `npm add sass-loader node-sass --dev`
 
-# Webpack Encore
+# 03_Webpack_Encore_with_SASS
 
 1. Created our project using the Console command's, 
 
 ```bash
-composer create-project symfony/skeleton 03_Webpack_Encore
+composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS
 ```
 
 2. In the next step we will access the project folder using:
 
 ```bash
-cd 03_Webpack_Encore
+cd 03_Webpack_Encore_with_SASS
 ```
 
 4. We are using **Flex** for your project, then we initialize our project for Encore via:
@@ -96,7 +96,19 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-9. Now we can see the results if we click on [http://127.0.0.1:8000](http://127.0.0.1:8000).
+9. Now, we must install the server component using the console command:
+
+```bash
+composer require server --dev
+```
+
+And if we launch the console command:
+
+```bash
+php bin/console server:run
+```
+
+We can see the results if we click on [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 10. Next step, we created [assets/css/app.scss](assets/css/app.scss).
 
