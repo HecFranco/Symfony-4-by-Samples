@@ -3,10 +3,10 @@
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap**.
 
 # Phases of the Demo
-1. [Project creation and ready] (#1project-creation-and-ready)
-2. [Installation of **WebPack Encore**] (#2installation-of-webpack-encore)
-3. [Installation and Configuration of **SASS**] (#3installation-and-configuration-of-sass)
-4. [Installation and Configuration of **Bootstrap**] (# 4installation-and-configuration-of-bootstrap)
+1. [Project creation and ready](#1project-creation-and-ready)
+2. [Installation of **WebPack Encore**](#2installation-of-webpack-encore)
+3. [Installation and Configuration of **SASS**](#3installation-and-configuration-of-sass)
+4. [Installation and Configuration of **Bootstrap**](# 4installation-and-configuration-of-bootstrap)
 
 -------------------------------------------------- -------------------------------------
 
