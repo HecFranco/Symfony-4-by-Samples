@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
 class RegistrationController extends Controller {
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
         // 1) build the form
@@ -19,15 +18,13 @@ class RegistrationController extends Controller {
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setRoles('ROLE_USER');
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
-            /***********************************************************************************************/
-                var_dump("You have register a new user");die();
-            /***********************************************************************************************/
             return $this->redirectToRoute('home');
         }
         return $this->render(

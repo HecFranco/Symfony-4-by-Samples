@@ -1,0 +1,9 @@
+# config/routes.yaml
+login:
+    path:       /login
+    controller: App\Controller\SecurityController::login
+
+home:
+    path:       /
+    controller: App\Controller\HomeController::index
+

@@ -6,14 +6,12 @@
         "ext-iconv": "*",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
-        "symfony/form": "^4.0",
         "symfony/framework-bundle": "^4.0",
         "symfony/lts": "^4@dev",
         "symfony/maker-bundle": "^1.3",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^4.0",
         "symfony/twig-bundle": "^4.0",
-        "symfony/validator": "^4.0",
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
@@ -59,7 +57,7 @@
     },
     "extra": {
         "symfony": {
-            "id": "01C9MB3MQM74853QGHQ6RCT6Q8",
+            "id": "01C9KKHYBGY6BBPSTXBVPC695P",
             "allow-contrib": false
         }
     }

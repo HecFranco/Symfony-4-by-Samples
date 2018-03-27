@@ -1,23 +1,20 @@
-# Purpose of the Demo - Registration Form
+# Purpose of the Demo - Login Form
 
-1. Create a **Registration Form** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
-
-The password will be coded and together with the rest of the collected data stored in the database.
+1. Create a **Login Form** that requires a username or email and password. 
 
 # Phases of the Demo
 
-1. [Project Creation](#1project-creation-and-ready)
-2. [Database Configuration](#2installation-of-webpack-encore)
+1. [Project Creation](#1project-creation)
+2. [Database Configuration](#2database-configuration)
 3. [Creating the User Entity](#3creating-the-user-entity)
-4. [Creating the User Form and Validation System](#4creating-the-user-form-and-validation-system)
-5. [Security System](#5security-system)
-6. [Creating the RegistrationController and its Routing](#6creating-the-registrationcontroller-and-its-routing)
-7. [Template](#7template)
-8. [Result](#8result)
+4. [Configure Security to load from your Entity](#4configure-security-to-load-from-your-entity)
+5. [Creating the SecurityController and its Routing](#5creating-the-securitycontroller-and-its-routing)
+6. [Templates](#6templates)
+7. [Result](#7result)
 
 ---------------------------------------------------------------------------------------
 
-* We will create the project through the console command: `composer create-project symfony/skeleton 01_registration_form`
+* We will create the project through the console command: `composer create-project symfony/skeleton 02_login_form`
 
 ---------------------------------------------------------------------------------------
 
@@ -37,7 +34,7 @@ The password will be coded and together with the rest of the collected data stor
 * `php bin/console doctrine:migrations:diff`
 * `php bin/console doctrine:migrations:migrate`
 
-# Registration Form
+# Login Form
 
 --------------------------------------------------------------------------------------------
 
@@ -48,13 +45,13 @@ The password will be coded and together with the rest of the collected data stor
 1. Created our project using the Console command's, 
 
 ```bash
-composer create-project symfony/skeleton 01_registration_form
+composer create-project symfony/skeleton 02_login_form
 ```
 
 2. In the next step we will access the project folder using:
 
 ```bash
-cd 01_registration_form
+cd 02_login_form
 ```
 
 --------------------------------------------------------------------------------------------
@@ -247,207 +244,119 @@ App\Entity\User:
 
 --------------------------------------------------------------------------------------------
 
-## 4.Creating the User Form and Validation System
+## 4.Configure Security to load from your Entity
 
 --------------------------------------------------------------------------------------------
 
-1. Frist, we will install the **Form Componente** of **Symfony** using the command console:
+1. Now that you have a **User** entity that **implements UserInterface**, you just need to tell Symfony's security system about it in security.yaml.
 
-```bash
-composer require form
-```
-
-2. Next, create the form for the User entity in [src/Form/UserType.php](src/Form/UserType.php).
-
-_[src/Form/UserType.php](src/Form/UserType.php)_
-```php
-<?php
-// src/Form/UserType.php
-namespace App\Form;
-use App\Entity\User;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Validator\Constraints\IsTrue;
-class UserType extends AbstractType {
-    public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder
-            ->add('email', EmailType::class)
-            ->add('username', TextType::class)
-            ->add('plainPassword', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ))
-            /* I will used termsAccepted like checkbox *******************************************************/
-            ->add('termsAccepted', CheckboxType::class, array(
-                'mapped' => false,
-                'constraints' => new IsTrue(),
-            ))
-            /*************************************************************************************************/
-        ;
-    }
-    public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
-            'data_class' => User::class,
-        ));
-    }
-}
-```
-
-(Source: [http://symfony.com/doc/current/doctrine/registration_form.html#create-a-form-for-the-entity](http://symfony.com/doc/current/doctrine/registration_form.html#create-a-form-for-the-entity))
-
-3. In applications using Symfony Flex, run this command to install the **validator component** before using it:
-
-```bash
-composer require validator
-```
- 
-4. We can use a system of validation in the entity add next configuration in [config/packages/framework.yaml](config/packages/framework.yaml).
-
-_[config/packages/framework.yaml](config/packages/framework.yaml)_
-```yml
-framework:
-    ####################################################################################################################
-    # To define type of validation `yaml` we will use 
-    # validation: { enabled: true }
-    # To define type of validation `anotation` we will use 
-    # validation: { enable_annotations: true }
-    validation: { enabled: true }
-    ####################################################################################################################
-```
-
-5. Validation is a very common task in web applications. Data entered in forms needs to be validated. Data also needs to be validated before it is written into a database or passed to a web service.
-
-After, we will defined the configuration of validation in [config/packages/validator/validation.yml](config/packages/validator/validation.yml)
-
-_[config/packages/validator/validation.yml](config/packages/validator/validation.yml)_
-```yml
-# https://symfony.com/doc/current/validation.html#basic-constraints
-App\Entity\User:
-    constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
-    properties:
-        email:
-            - Email:
-                message: El email "{{ value }}" no es válido.
-                checkMX: true
-            - NotBlank: ~
-        username:
-            - NotBlank: ~               
-            - Length:
-                min: 5
-                max: 50
-                minMessage: 'Your first name must be at least {{ limit }} characters long'
-                maxMessage: 'Your first name cannot be longer than {{ limit }} characters'            
-        password:
-            - NotBlank: ~              
-        plainPassword:
-            - NotBlank: ~ 
-```
-
-(Source: [https://symfony.com/doc/current/validation.html#content_wrapper](https://symfony.com/doc/current/validation.html#content_wrapper))
-
---------------------------------------------------------------------------------------------
-
-## 5.Security System
-
---------------------------------------------------------------------------------------------
-
-1. To encode the password it is necessary to install the security component:
-
-```bash
-composer require security
-```
-
-**Note** : This componente must be install.
-
-2. Of course, your users' passwords now need to be encoded with this exact algorithm. For hardcoded users, you can use the built-in command:
-
-```bash
-php bin/console security:encode-password
-```
-
-3. Whether your users are stored in [config/packages/security.yaml](config/packages/security.yaml), in a database or somewhere else, you'll want to encode their passwords. The most suitable algorithm to use is bcrypt:
-
-(Source: [https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password](https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password))
+2. First, we will indicated the encoder that we will used into [config/packages/security.yaml](config/packages/security.yaml).
 
 _[config/packages/security.yaml](config/packages/security.yaml)_
 ```yml
+# config/packages/security.yaml
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         App\Entity\User: 
             algorithm: bcrypt
-            cost: 4 # Number of times the password will be encrypted        
-    ##################################################################################################
+            cost: 4 # Number of times the password will be encrypted     
+# ...
+# ....................................................DEFINIMOS EL SISTEMA DE ENCRIPTACIÓN QUE SE USARÁ #
 ```
 
-4. Symfony creates an instance of RequestMatcher for each access_control entry, which determines whether or not a given access control should be used on this request. The following access_control options are used for matching:
+3. Then, we will designate which user provider we will have into [config/packages/security.yaml](config/packages/security.yaml).
+
+_[config/packages/security.yaml](config/packages/security.yaml)_
+```yml
+# ...
+# PROVEEDOR DE USUARIOS................................................................................ #
+# https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+# https://symfony.com/doc/current/security/entity_provider.html#configure-security-to-load-from-your-entity    
+    providers:
+        # in_memory: { memory: ~ }
+        our_db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+# ................................................................................PROVEEDOR DE USUARIOS #
+
+```
+
+4. Next, we will indicate the firewalls configuration into [config/packages/security.yaml](config/packages/security.yaml).
+
+_[config/packages/security.yaml](config/packages/security.yaml)_
+```yml
+# FIREWALLS ........................................................................................... #
+# ...
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            # pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
+# ...
+            form_login:
+                login_path: /login
+                check_path: /login_check
+# ...
+            logout:
+                path: /logout
+                target: /
+                success_handler: ~
+                invalidate_session: true
+```
+
+5. For other hand, **Symfony** creates an instance of RequestMatcher for each `access_control` entry, which determines whether or not a given access control should be used on this request. The following `access_control` options are used for matching:
 
 (Source: [https://symfony.com/doc/current/security/access_control.html#matching-options](https://symfony.com/doc/current/security/access_control.html#matching-options))
 
 _[config/packages/security.yaml](config/packages/security.yaml)_
 ```yml
-security:
-    ##################################################################################################
+# ........................................................................................... FIREWALLS #
+    # activate different ways to authenticate
+    # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+    #http_basic: ~
+    # https://symfony.com/doc/current/security/form_login_setup.html
+    # form_login: ~
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }    
-        # ^/login puede entrar cualquier usuario (ANÓNIMO)
+        # https://symfony.com/doc/current/security/access_control.html#content_wrapper
+        # ^/login can be any user (ANONYMOUS)
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]}   
+        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]} 
 ```
 
+(Source: [https://symfony.com/doc/current/security/entity_provider.html#configure-security-to-load-from-your-entity](https://symfony.com/doc/current/security/entity_provider.html#configure-security-to-load-from-your-entity))
+(Source: [https://symfony.com/doc/current/security/access_control.html#content_wrapper](https://symfony.com/doc/current/security/access_control.html#content_wrapper))
+
 --------------------------------------------------------------------------------------------
 
-## 6.Creating the RegistrationController and its Routing
+## 5.Creating the SecurityController and its Routing
 
 --------------------------------------------------------------------------------------------
 
-1. Next, you need a controller to handle the form rendering and submission. If the form is submitted, the controller performs the validation and saves the data into the database in [src/Controller/RegistrationController.php](src/Controller/RegistrationController.php).
+1. Next, we need a controller to handle the form rendering and submission. If the form is submitted, the controller performs the validation the user into the database in [src/Controller/SecurityController.php](src/Controller/SecurityController.php).
 
-_[src/Controller/RegistrationController.php](src/Controller/RegistrationController.php)_
+_[src/Controller/SecurityController.php](src/Controller/SecurityController.php)_
 ```php
 <?php
-// src/Controller/RegistrationController.php
+// src/Controller/SecurityController.php
 namespace App\Controller;
-use App\Form\UserType;
-use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-class RegistrationController extends Controller {
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
-        // 1) build the form
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        // 2) handle the submit (will only happen on POST)
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-            $user->setRoles('ROLE_USER');
-            // 4) save the User!
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
-            return $this->redirectToRoute('home');
-        }
-        return $this->render(
-            'registration/register.html.twig',
-            array('form' => $form->createView())
-        );
+class SecurityController extends Controller {
+    public function login(Request $request, AuthenticationUtils $authenticationUtils) {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
 }
 ```
@@ -485,11 +394,11 @@ user_registration:
 
 --------------------------------------------------------------------------------------------
 
-## 7.Template
+## 6.Templates
 
 --------------------------------------------------------------------------------------------
 
-1. If you're returning HTML from your controller, you'll probably want to render a template. Fortunately, Symfony comes with Twig: a templating language that's easy, powerful and actually quite fun.
+1. If you're returning HTML from your controller, you'll probably want to render a template. Fortunately, Symfony comes with **Twig**: a templating language that's easy, powerful and actually quite fun.
 
 First, install Twig:
 
@@ -497,29 +406,35 @@ First, install Twig:
 composer require twig
 ```
 
-Now we will created our template with **Twig** in [templates/registration/register.html.twig](templates/registration/register.html.twig)
+Now we will created our template with **Twig** in [templates/security/login.html.twig](templates/security/login.html.twig).
 
-_[templates/registration/register.html.twig](templates/registration/register.html.twig)_
+_[templates/security/login.html.twig](templates/security/login.html.twig)_
 ```html
-{# templates/registration/register.html.twig #}
-{% extends 'base.html.twig' %}
-{% block body %}
-    {{ form_start(form) }}
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.plainPassword.first) }}
-        {{ form_row(form.plainPassword.second) }}
+{# templates/security/login.html.twig #}
+{# ... you will probably extend your base template, like base.html.twig #}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<form action="{{ path('login') }}" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
-        <button type="submit">Register!</button>
-    {{ form_end(form) }}
-{% endblock %}
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="_password" />
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+    <button type="submit">login</button>
+</form>
 ```
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
 --------------------------------------------------------------------------------------------
 
-## 8.Result
+## 7.Result
 
 --------------------------------------------------------------------------------------------
 
@@ -536,3 +451,61 @@ php bin/console server:run
 ```
 
 3. Finally, you will have to click on the following link [http://127.0.0.1:8000/register](http://127.0.0.1:8000/register) to see your installation project.
+
+# EXTRA
+
+--------------------------------------------------------------------------------------------
+
+## How to Add "Remember Me" Login Functionality
+
+--------------------------------------------------------------------------------------------
+
+1. To add **Remember Me** option in the login form, we will modified the firewalls configuration into [config/packages/security.yaml](config/packages/security.yaml).
+
+_[config/packages/security.yaml](config/packages/security.yaml)_
+```diff
+# ...
+    firewalls:
+# ...
+        main:
+            form_login:
+                login_path: /login
+                check_path: /login_check
+# ...
+++            remember_me:
+++                secret:   '%kernel.secret%'
+++                lifetime: 604800 # 1 week in seconds
+++                path:     /
+# ...
+            logout:
+                path: /logout
+                target: /
+                success_handler: ~
+                invalidate_session: true
+```
+
+2. And the **template** **form login** into [templates/security/login.html.twig](templates/security/login.html.twig).
+
+_[templates/security/login.html.twig](templates/security/login.html.twig)_
+```html
+{# templates/security/login.html.twig #}
+{# ... you will probably extend your base template, like base.html.twig #}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<form action="{{ path('login') }}" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="_password" />
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+    <button type="submit">login</button>
+</form>
+```
+
+(Source: [https://symfony.com/doc/master/security/remember_me.html#content_wrapper](https://symfony.com/doc/master/security/remember_me.html#content_wrapper))

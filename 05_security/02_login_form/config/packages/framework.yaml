@@ -28,10 +28,3 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
-    ####################################################################################################################
-    # To define type of validation `yaml` we will use 
-    # validation: { enabled: true }
-    # To define type of validation `anotation` we will use 
-    # validation: { enable_annotations: true }
-    validation: { enabled: true }
-    ####################################################################################################################        

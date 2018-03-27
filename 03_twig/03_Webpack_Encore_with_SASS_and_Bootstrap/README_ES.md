@@ -49,7 +49,7 @@ composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstr
 cd 03_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
-4. Crearemos el **Controlador**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), que gestionará la vista con el siguiente contenido.
+3. Crearemos el **Controlador**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), que gestionará la vista con el siguiente contenido.
 
 _[src/Controller/DefaultController.php](src/Controller/DefaultController.php)_
 ```php
@@ -66,7 +66,7 @@ class DefaultController extends Controller{
 }
 ```
 
-5. Para esta **Demo**, utilizaremos un enrutamiento **yaml**, para ello lo configuramos dentro de [config/routes.yaml](config/routes.yaml).
+4. Para esta **Demo**, utilizaremos un enrutamiento **yaml**, para ello lo configuramos dentro de [config/routes.yaml](config/routes.yaml).
 
 _[config/routes.yaml](config/routes.yaml)_
 ```yml
@@ -76,13 +76,13 @@ index:
     controller: App\Controller\DefaultController::index
 ```
 
-6. Para la vista usaremos **Twig**, por lo que instalaremos su componente mediante el siguiente comando:
+5. Para la vista usaremos **Twig**, por lo que instalaremos su componente mediante el siguiente comando:
 
 ```bash
 composer require twig
 ```
 
-7. Ahora crearemos nuestra plantilla con **Twig** en [templates/default/index.html.twig](templates/default/index.html.twig).
+6. Ahora crearemos nuestra plantilla con **Twig** en [templates/default/index.html.twig](templates/default/index.html.twig).
 
 _[templates/default/index.html.twig](templates/default/index.html.twig)_
 ```html
@@ -155,13 +155,13 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-8. Como necesitamos referenciar las entradas, **js** [build/app.js](build/app.js) y **css** [build/app.css](build/app.css), dentro de la plantilla instalaremos el **Componente Asset** usando el comando de consola:
+7. Como necesitamos referenciar las entradas, **js** [build/app.js](build/app.js) y **css** [build/app.css](build/app.css), dentro de la plantilla instalaremos el **Componente Asset** usando el comando de consola:
 
 ```bash
 composer require symfony/asset
 ```
 
-9. Seguidamente, añadiremos a la plantilla base [templates/base.html.twig](templates/base.html.twig), los enlaces a nuestras entradas **js** y **css**.
+8. Seguidamente, añadiremos a la plantilla base [templates/base.html.twig](templates/base.html.twig), los enlaces a nuestras entradas **js** y **css**.
 
 _[templates/base.html.twig](templates/base.html.twig)_
 ```html
@@ -282,7 +282,7 @@ npm run watch
 
 **Nota:** Si lanzamos un subproceso `npm run dev -watch`, el sistema reconocerá los cambios que realicemos en los archivos y regenerará los archivos que se vinculan en nuestra plantilla para que los cambios estén disponibles.
 
-9. Ahora podremos lanzar el servidor nuevamente mediante `php bin/cosnole server:run` y acceder a [http://127.0.0.1:8000](http://127.0.0.1:8000) para ver los cambios referidos en [assets/css/app.scss](assets/css/app.scss).
+6. Ahora podremos lanzar el servidor nuevamente mediante `php bin/cosnole server:run` y acceder a [http://127.0.0.1:8000](http://127.0.0.1:8000) para ver los cambios referidos en [assets/css/app.scss](assets/css/app.scss).
 
 --------------------------------------------------------------------------------------------
 

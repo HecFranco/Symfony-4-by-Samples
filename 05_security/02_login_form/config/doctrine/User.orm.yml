@@ -35,4 +35,4 @@ App\Entity\User:
             nullable: false
             length: null
             options:
-                fixed: false               
+                fixed: false     

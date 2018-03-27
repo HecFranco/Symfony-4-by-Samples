@@ -5,6 +5,7 @@ security:
             algorithm: bcrypt
             cost: 4 # Number of times the password will be encrypted        
     ##################################################################################################
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
     firewalls:
@@ -24,10 +25,11 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    ##################################################################################################
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }    
         # ^/login puede entrar cualquier usuario (ANÓNIMO)
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]}        
+        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]}   

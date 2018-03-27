@@ -49,7 +49,7 @@ composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstr
 cd 03_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
-4. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
+3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
 
 _[src/Controller/DefaultController.php](src/Controller/DefaultController.php)_
 ```php
@@ -66,7 +66,7 @@ class DefaultController extends Controller{
 }
 ```
 
-5. For this **Demo**, we will use a **yaml** routing, for this we configure it in [config/routes.yaml](config/routes.yaml).
+4. For this **Demo**, we will use a **yaml** routing, for this we configure it in [config/routes.yaml](config/routes.yaml).
 
 _[config/routes.yaml](config/routes.yaml)_
 ```yml
@@ -76,13 +76,13 @@ index:
     controller: App\Controller\DefaultController::index
 ```
 
-6. For the view we will use **Twig**, so we will install your component using the following command:
+5. For the view we will use **Twig**, so we will install your component using the following command:
 
 ```bash
 composer require twig
 ```
 
-7. Now, we will create our template with **Twig** in [templates/default/index.html.twig](templates/default/index.html.twig).
+6. Now, we will create our template with **Twig** in [templates/default/index.html.twig](templates/default/index.html.twig).
 
 _[templates/default/index.html.twig](templates/default/index.html.twig)_
 ```html
@@ -155,13 +155,13 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-8. How we need to reference the entries, **js** [build/app.js](build/app.js) and **css** [build/app.css](build/app.css), within the template we will install the **Asset Component** using the console command:
+7. How we need to reference the entries, **js** [build/app.js](build/app.js) and **css** [build/app.css](build/app.css), within the template we will install the **Asset Component** using the console command:
 
 ```bash
 composer require symfony/asset
 ```
 
-9. Next, we will add to the base template [templates/base.html.twig](templates/base.html.twig), the links to our entries **js** and **css**.
+8. Next, we will add to the base template [templates/base.html.twig](templates/base.html.twig), the links to our entries **js** and **css**.
 
 _[templates/base.html.twig](templates/base.html.twig)_
 ```html
@@ -185,7 +185,7 @@ _[templates/base.html.twig](templates/base.html.twig)_
 </html>
 ```
 
-10. Now, we must install the **server component**, in order to launch our local server, through the console command:
+9. Now, we must install the **server component**, in order to launch our local server, through the console command:
 
 ```bash
 composer require server --dev
@@ -283,7 +283,7 @@ npm run watch
 
 **Note:** If we launch a `npm run dev -watch` thread, the system will recognize the changes we make to the files and will regenerate the files that are linked in our template so that the changes are available.
 
-9. Now we can launch the server again using `php bin/console server:run` and access [http://127.0.0.1:8000](http://127.0.0.1:8000) to see the changes referred to in [assets/css/app.scss](assets/css/app.scss).
+6. Now we can launch the server again using `php bin/console server:run` and access [http://127.0.0.1:8000](http://127.0.0.1:8000) to see the changes referred to in [assets/css/app.scss](assets/css/app.scss).
 
 --------------------------------------------------------------------------------------------
 
