@@ -1,54 +1,55 @@
-# Purpose of the Demo - 03_Webpack_Encore_with_SASS
+# Purpose of the Demo - 03 Webpack Encore with SASS and Bootstrap
 
-We will make an installation from the beginning where we will include the **Webpack Encore** and **Sass**.
+We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap**.
+
+# Phases of the Demo
+1. [Project creation and ready] (#1project-creation-and-ready)
+2. [Installation of **WebPack Encore**] (#2installation-of-webpack-encore)
+3. [Installation and Configuration of **SASS**] (#3installation-and-configuration-of-sass)
+4. [Installation and Configuration of **Bootstrap**] (# 4installation-and-configuration-of-bootstrap)
+
+-------------------------------------------------- -------------------------------------
+
+* We will create the project through the command of the console:`composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap`
 
 ---------------------------------------------------------------------------------------
 
-* We will create the project through the console command: `composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS`
-
----------------------------------------------------------------------------------------
-
-# Summary Symfony component`s to use
+# Summary of Symfony components to use
 
 * Server Component, `composer require server --dev`
 * Twig Component, `composer require twig`
 * Asset Component, `composer require symfony/asset`
 * WebPack Encore, `composer require encore`
 
-# Summary Webpack component`s to use
+# Summary of the components of the Webpack to use
 
 * Npm.js Component, `npm install @symfony/webpack-encore --save-dev`
-* Npm.js Sass and node Sass Component, `npm add sass-loader node-sass --dev`
+* Sass-loader Component, `npm add sass-loader --dev`
+* Node Sass Component, `npm add node-sass --dev`
+* JQuery Component, `npm add jquery`
+* Bootstrap-Sass Component, `npm add bootstrap-sass --dev`
 
-# 03_Webpack_Encore_with_SASS
+# 03 Webpack Encore with SASS and Bootstrap
 
-1. Created our project using the Console command's, 
+--------------------------------------------------------------------------------------------
 
-```bash
-composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS
-```
+## 1.Project Creation and Ready
 
-2. In the next step we will access the project folder using:
+--------------------------------------------------------------------------------------------
 
-```bash
-cd 03_Webpack_Encore_with_SASS
-```
-
-4. We are using **Flex** for your project, then we initialize our project for Encore via:
+1. We create our project using the commands of the console: 
 
 ```bash
-composer require encore
+composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
-5. First, make sure you install **Node.js** and also the **Npm.js**.
+2. In the next step, we will access the project folder using:
 
 ```bash
-npm install @symfony/webpack-encore --save-dev
+cd 03_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
-This will create a [webpack.config.js](webpack.config.js) file, add the [assets/](assets/) directory, and add [node_modules/](node_modules/) to [.gitignore](.gitignore).
-
-6. We will create the file [src/Controller/DefaultController.php](src/Controller/DefaultController.php) with the following content.
+4. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
 
 _[src/Controller/DefaultController.php](src/Controller/DefaultController.php)_
 ```php
@@ -60,107 +61,107 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller{
     public function index(Request $request): Response  {
-        //$em = $this->getDoctrine()->getManager();
         return $this->render('default/index.html.twig');
     }
 }
 ```
 
-7. We will use the routing type **yaml**, for them we configure the type of routing in [config/routes.yaml](config/routes.yaml).
+5. For this **Demo**, we will use a **yaml** routing, for this we configure it in [config/routes.yaml](config/routes.yaml).
 
 _[config/routes.yaml](config/routes.yaml)_
 ```yml
-# Important in the files with extension .yaml each bleeding equals 4 spaces!!!!
+# Importante en los archivos con la extensión .yaml cada sangría es igual a 4 espacios !!!!
 index:
     path: /
     controller: App\Controller\DefaultController::index
 ```
 
-8. If you're returning HTML from your controller, you'll probably want to render a template. Fortunately, Symfony comes with Twig: a templating language that's easy, powerful and actually quite fun.
-
-First, install Twig:
+6. For the view we will use **Twig**, so we will install your component using the following command:
 
 ```bash
 composer require twig
 ```
 
-Now we will created our template with **Twig** in [templates/default/index.html.twig](templates/default/index.html.twig).
+7. Now, we will create our template with **Twig** in [templates/default/index.html.twig](templates/default/index.html.twig).
 
 _[templates/default/index.html.twig](templates/default/index.html.twig)_
 ```html
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1 class="text-center" data-toggle="tooltip" data-placement="bottom" title="js de bootstrap funcionando :)" >Hello, we are using <s>Sass</s> in our project!</h1>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<section>
+    <h1 class="text-center" data-toggle="tooltip" data-placement="bottom" title="js de bootstrap funcionando :)" >
+        Hello, we are using <s>Sass</s> in our project!
+    </h1>
+</section>
 {% endblock %}
 ```
 
+**Note**: This template has classes of **Bootstrap 3**.
+
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-9. Now, we must install the server component using the console command:
-
-```bash
-composer require server --dev
-```
-
-And if we launch the console command:
-
-```bash
-php bin/console server:run
-```
-
-We can see the results if we click on [http://127.0.0.1:8000](http://127.0.0.1:8000).
-
-10. Next step, we created [assets/css/app.scss](assets/css/app.scss).
-
-_[assets/css/app.scss](assets/css/app.scss)_
-```scss
-$acceVerde: #84a640;
-$acceAzul: #396696;
-h1 {
-    color: $acceVerde;
-    s {
-        color: $acceAzul;
-    }
-}
-```
-
-and add this line `import '../css/app.scss';` in [assets/js/app.js](assets/js/app.js).
-
-_[assets/js/app.js](assets/js/app.js)_
-```js
-import '../css/app.scss';
-```
-
-11. Now we must configure the build process in Webpack and modify the base template so that the system recognizes the output of the build process of the static files.
-
-For the first thing we must add the dependencies that we will need when using SASS with the following command.
-
-```bash
-npm add sass-loader node-sass --dev
-```
-
-12. Now we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
-
-_[webpack.config.js](webpack.config.js)_
-```diff
-    // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
-++    .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
-    // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
-++    .enableSassLoader()
-```
-
-13. We will add to the file [templates/base.html.twig](templates/base.html.twig) the links to our files.
-
-Frist, it is necessary install **Asset Componente** using the command console:
+8. How we need to reference the entries, **js** [build/app.js](build/app.js) and **css** [build/app.css](build/app.css), within the template we will install the **Asset Component** using the console command:
 
 ```bash
 composer require symfony/asset
 ```
 
-Now, we can create our **base template**.
+9. Next, we will add to the base template [templates/base.html.twig](templates/base.html.twig), the links to our entries **js** and **css**.
 
 _[templates/base.html.twig](templates/base.html.twig)_
 ```html
@@ -184,20 +185,172 @@ _[templates/base.html.twig](templates/base.html.twig)_
 </html>
 ```
 
-Now we can access [http://127.0.0.1:8000](http://127.0.0.1:8000) again expecting to see our brand new corporate colors in the message we have written, but we will find two 404 errors corresponding to the [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) files that we just included in our base template.
-
-To correct the errors we must launch the following command that will generate the files from the ones we created in the assets folder.
+10. Now, we must install the **server component**, in order to launch our local server, through the console command:
 
 ```bash
-npm run watch
+composer require server --dev
 ```
 
-**Note:** If we launch a thread `npm run dev -watch` the system will be aware of changes that we make in the files and will be regenerating the files that link in our template to have the changes available.
-
-16. Finally you can view the result of demo openning other terminal and writting the command console:
+We will launch the **Local Server** using the console command:
 
 ```bash
 php bin/console server:run
 ```
 
-5. Finally, you will have to click on the following link [http://127.0.0.1:8000](http://127.0.0.1:8000) to see your installation project.
+In order to see the results, we will click on [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+--------------------------------------------------------------------------------------------
+
+## 2.Installation of **WebPack Encore**
+
+--------------------------------------------------------------------------------------------
+
+1. We are using **Symfony Flex** for the project, so we will initialize our project for **Webpack Encore** through:
+
+```bash
+composer require encore
+```
+
+2. Before, you need to make sure you have **Node.js** installed, otherwise you can access [https://nodejs.org/en/](https://nodejs.org/es/) and download it for your installation.
+
+3. Next, we will install **Npm.js**, using the command:
+
+```bash
+npm install @symfony/webpack-encore --save-dev
+```
+
+This component will generate a file [webpack.config.js](webpack.config.js), and add the directories [assets/](assets/) and [node_modules/](node_modules/) to [.gitignore](.gitignore) .
+
+
+--------------------------------------------------------------------------------------------
+
+## 3.Installation and Configuration of **SASS**
+
+--------------------------------------------------------------------------------------------
+
+1. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
+
+For before, you must add the dependencies that we need when we use **SASS** with the following command.
+
+```bash
+npm add sass-loader node-sass --dev
+```
+
+2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
+
+_[webpack.config.js](webpack.config.js)_
+```diff
+    // uncomment to define the assets of the project
+    // .addEntry('js/app', './assets/js/app.js')
+++   .addEntry('js/app', './assets/js/app.js')
+    // .addStyleEntry('css/app', './assets/css/app.scss')
+++   .addStyleEntry('css/app', './assets/css/app.scss')
+    // uncomment if you use Sass/SCSS files
+    // .enableSassLoader()
+++    .enableSassLoader()
+```
+
+To activate **Sass-Loader**, which is the **SASS Reader**, and indicate the location of the inputs and outputs of the components **js** and **css**. Indicating `.addEntry ('js/app', './assets/js/app.js')` for the compilation of **js** and `.addStyleEntry (' css/app ',' ./assets/css/app.scss') `for the **css**.
+
+3. In the next step, we will create our stylesheet [assets/css/app.scss](assets/css/app.scss) using **SASS**. This sheet will be transpiled to **CSS**.
+
+_[assets/css/app.scss](assets/css/app.scss)_
+```scss
+$acceVerde: #84a640;
+$acceAzul: #396696;
+h1 {
+    color: $acceVerde;
+    s {
+        color: $acceAzul;
+    }
+}
+```
+
+4. Next, we add this line `import '../css/app.scss';` in [assets/js/app.js](assets/js/app.js) to be able to compile **Sass** in **css**.
+
+_[assets/js/app.js](assets/js/app.js)_
+```js
+import '../css/app.scss';
+```
+
+5. Now, we can access [http://127.0.0.1:8000](http://127.0.0.1:8000) again expecting to see our changes in the template, but we will find two **404 errors** corresponding to the files [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) that we just included in our base template.
+
+To correct the errors, we must execute the following command that will generate the files from those created in the folders  [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js).
+
+```bash
+npm run watch
+```
+
+**Note:** If we launch a `npm run dev -watch` thread, the system will recognize the changes we make to the files and will regenerate the files that are linked in our template so that the changes are available.
+
+9. Now we can launch the server again using `php bin/console server:run` and access [http://127.0.0.1:8000](http://127.0.0.1:8000) to see the changes referred to in [assets/css/app.scss](assets/css/app.scss).
+
+--------------------------------------------------------------------------------------------
+
+## 4.Installation and configuration of **Bootstrap**
+
+--------------------------------------------------------------------------------------------
+
+1. To import **Bootstrap** in our project we will only have to execute.
+
+```bash
+npm add jquery
+```
+
+to install **Jquery**, and
+
+```bash
+npm add bootstrap-sass --dev
+```
+
+to install **Bootstrap-Sass** in its version 3.
+
+2. Additionally in this demo we will install the library **popper.js** using the command:
+
+```bash
+npm add popper.js
+```
+
+with it we will generate the windows with floating information.
+
+3. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives. And we will uncomment the following line of the file [webpack.config.js](webpack.config.js) to facilitate **jQuery** to **Bootstrap**.
+
+_[webpack.config.js](webpack.config.js)_
+```diff
+    // uncomment for legacy applications that require $/jQuery as a global variable
+    // .autoProvidejQuery()
+++ .autoProvidejQuery()
+```
+
+4. In the next step, we will modify our stylesheet [assets/css/app.scss](assets/css/app.scss) by importing the **Bootstrap** library. 
+
+_[assets/css/app.scss](assets/css/app.scss)_
+```diff
+++ @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+$acceVerde: #84a640;
+$acceAzul: #396696;
+h1 {
+    color: $acceVerde;
+    s {
+        color: $acceAzul;
+    }
+}
+```
+
+**Nota**: Esta hoja será compilada a **CSS**.
+
+5. Next, we add these lines in [assets/js/app.js](assets/js/app.js).
+
+_[assets/js/app.js](assets/js/app.js)_
+```diff
+++ import $ from 'jquery';
+++ import 'bootstrap-sass';
+import '../css/app.scss';
+++ (function() {
+++     $('h1').tooltip()
+++ })();
+```
+
+So we will import the function **$** from **jquery**, and the content of **bootstrap-sass**. We will also include the `tooltip` function referred to in an `h1`.
+
+6. Now, we launch **loader-sass** via `npm run watch`, and the **server** `php bin/console server:run` so we can see the results by clicking [http://127.0.0.1:8000](http://127.0.0.1:8000).

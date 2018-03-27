@@ -24,9 +24,12 @@ Haremos una instalación desde el principio donde incluiremos **Webpack Encore**
 # Resumen de los componentes de la Webpack para usar
 
 * Componente Npm.js, `npm install @symfony/webpack-encore --save-dev`
-* Componente Npm-Sass y node Sass , `npm add sass-loader node-sass --dev`
+* Componente Sass-loader, `npm add sass-loader --dev`
+* Componente Node Sass, `npm add node-sass --dev`
+* Componente JQuery, `npm add jquery`
+* Componente Bootstrap-Sass, `npm add bootstrap-sass --dev`
 
-# 03 Webpack Encore with SASS
+# 03 Webpack Encore with SASS and Bootstrap
 
 --------------------------------------------------------------------------------------------
 
@@ -34,13 +37,13 @@ Haremos una instalación desde el principio donde incluiremos **Webpack Encore**
 
 --------------------------------------------------------------------------------------------
 
-1. Creo nuestro proyecto usando los comandos de la consola: 
+1. Creamos nuestro proyecto usando los comandos de la consola: 
 
 ```bash
 composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
-2. En el siguiente paso accederemos a la carpeta del proyecto usando:
+2. En el siguiente paso, accederemos a la carpeta del proyecto usando:
 
 ```bash
 cd 03_Webpack_Encore_with_SASS_and_Bootstrap
@@ -85,23 +88,78 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 ```html
 {% extends 'base.html.twig' %}
 {% block body %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<section>
     <h1 class="text-center" data-toggle="tooltip" data-placement="bottom" title="js de bootstrap funcionando :)" >
         Hello, we are using <s>Sass</s> in our project!
-    </h1>    
+    </h1>
+</section>
 {% endblock %}
 ```
 
-**Nota**: Esta plantilla dispone de clases propias de **Bootstrap**.
+**Nota**: Esta plantilla dispone de clases propias de **Bootstrap 3**.
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
-8. Además, instalaremos el **Componente Asset** usando el comando de consola:
+8. Como necesitamos referenciar las entradas, **js** [build/app.js](build/app.js) y **css** [build/app.css](build/app.css), dentro de la plantilla instalaremos el **Componente Asset** usando el comando de consola:
 
 ```bash
 composer require symfony/asset
 ```
-
-para referenciar las entradas **js** [build/app.js](build/app.js) y **css** [build/app.css](build/app.css).
 
 9. Seguidamente, añadiremos a la plantilla base [templates/base.html.twig](templates/base.html.twig), los enlaces a nuestras entradas **js** y **css**.
 
@@ -127,19 +185,19 @@ _[templates/base.html.twig](templates/base.html.twig)_
 </html>
 ```
 
-9. Ahora, debemos instalar el **componente servidor** mediante el comando de consola:
+9. Ahora, debemos instalar el **componente servidor**, para poder lanzar nuestro servidor local, mediante el comando de consola:
 
 ```bash
 composer require server --dev
 ```
 
-Y lanzar el comando de consola:
+Lanzaremos el **Servidor Local** mediante el comando de consola:
 
 ```bash
 php bin/console server:run
 ```
 
-Para poder ver los resultados, para ello hacemos clic en [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Para poder ver los resultados, haremos clic en [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 --------------------------------------------------------------------------------------------
 
@@ -153,9 +211,9 @@ Para poder ver los resultados, para ello hacemos clic en [http://127.0.0.1:8000]
 composer require encore
 ```
 
-2. Antes, es necesario asegurarse de tener instalado **Node.js**.
+2. Antes, es necesario asegurarse de tener instalado **Node.js**, en caso contrario acceder a [https://nodejs.org/es/](https://nodejs.org/es/) y lo descargaremos para su instalación.
 
-3. Instalaremos **Npm.js**, mediante el comando:
+3. Seguidamente, instalaremos **Npm.js**, mediante el comando:
 
 ```bash
 npm install @symfony/webpack-encore --save-dev
@@ -207,7 +265,7 @@ h1 {
 }
 ```
 
-4. A continuación, agregamos esta línea `import '../css/app.scss';` en [assets/js/app.js](assets/js/app.js).
+4. A continuación, agregamos esta línea `import '../css/app.scss';` en [assets/js/app.js](assets/js/app.js) para poder compilar **Sass** en **css**.
 
 _[assets/js/app.js](assets/js/app.js)_
 ```js
@@ -224,7 +282,7 @@ npm run watch
 
 **Nota:** Si lanzamos un subproceso `npm run dev -watch`, el sistema reconocerá los cambios que realicemos en los archivos y regenerará los archivos que se vinculan en nuestra plantilla para que los cambios estén disponibles.
 
-9. Ahora podremos lanzar el servidor nuevamente y acceder a [http://127.0.0.1:8000](http://127.0.0.1:8000) para ver los cambios referidos en [assets/css/app.scss](assets/css/app.scss).
+9. Ahora podremos lanzar el servidor nuevamente mediante `php bin/cosnole server:run` y acceder a [http://127.0.0.1:8000](http://127.0.0.1:8000) para ver los cambios referidos en [assets/css/app.scss](assets/css/app.scss).
 
 --------------------------------------------------------------------------------------------
 
@@ -236,8 +294,15 @@ npm run watch
 
 ```bash
 npm add jquery
+```
+
+para instalar **Jquery**, y 
+
+```bash
 npm add bootstrap-sass --dev
 ```
+
+para instalar **Bootstrap-Sass** en su versión 3.
 
 2. Adicionalmente en esta demo instalaremos la librería **poppe.js** usando el comando:
 
@@ -245,7 +310,9 @@ npm add bootstrap-sass --dev
 npm add popper.js
 ```
 
-3. Seguidamente configuraremos el archivo [webpack.config.js](webpack.config.js) con las siguientes directivas. Descomentaremos la siguiente línea del fichero [webpack.config.js](webpack.config.js) para facilitar **jQuery** a **Bootstrap**.
+con ella generaremos las ventanas con información flotante.
+
+3. Seguidamente configuraremos el archivo [webpack.config.js](webpack.config.js) con las siguientes directivas. Y descomentaremos la siguiente línea del fichero [webpack.config.js](webpack.config.js) para facilitar **jQuery** a **Bootstrap**.
 
 _[webpack.config.js](webpack.config.js)_
 ```diff
@@ -254,7 +321,7 @@ _[webpack.config.js](webpack.config.js)_
 ++ .autoProvidejQuery()
 ```
 
-4. En el siguiente paso, modificaremos nuestra hoja de estilos [assets/css/app.scss](assets/css/app.scss) importando la librería de **Bootstrap**. **Nota**: Esta hoja será transpilada a **CSS**.
+4. En el siguiente paso, modificaremos nuestra hoja de estilos [assets/css/app.scss](assets/css/app.scss) importando la librería de **Bootstrap**. 
 
 _[assets/css/app.scss](assets/css/app.scss)_
 ```diff
@@ -269,6 +336,8 @@ h1 {
 }
 ```
 
+**Nota**: Esta hoja será compilada a **CSS**.
+
 5. A continuación, agregamos estas líneas en [assets/js/app.js](assets/js/app.js).
 
 _[assets/js/app.js](assets/js/app.js)_
@@ -280,3 +349,7 @@ import '../css/app.scss';
 ++     $('h1').tooltip()
 ++ })();
 ```
+
+Así importaremos la función **$** desde **jquery**, y el contenido de **bootstrap-sass**. Además incluiremos la función `tooltip` referidas en un `h1`.
+
+6. Ahora, lanzamos **loader-sass** mediante `npm run watch`, y el **servidor** `php bin/console server:run` para poder ver los resultados haciendo clic en [http://127.0.0.1:8000](http://127.0.0.1:8000).
