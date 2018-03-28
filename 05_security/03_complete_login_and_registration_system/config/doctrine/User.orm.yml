@@ -1,0 +1,38 @@
+# config/doctrine/User.orm.yml
+App\Entity\User:
+    type: entity
+    #repositoryClass: App\Repository\UserRepository
+    table: user    
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        email:
+            type: string
+            length: 255
+            unique: true
+        username:
+            type: string
+            length: 50
+            nullable: true
+            unique: true
+        plainPassword:
+            type: text
+            length: 4096
+            column: plain_password
+        password:
+            type: string
+            length: 64
+        isActive:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_active
+        role:
+            type: json_array
+            nullable: false
+            length: null
+            options:
+                fixed: false 

@@ -1,23 +1,16 @@
-# Purpose of the Demo - Registration Form
+# Purpose of the Demo - Complete Login and Registration System
 
-1. Create a **Registration Form** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
+1. Create a **Complete Login and Registration System** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
 
 The password will be coded and together with the rest of the collected data stored in the database.
 
 # Phases of the Demo
+1. []()
 
-1. [Project Creation](#1project-creation-and-ready)
-2. [Database Configuration](#2installation-of-webpack-encore)
-3. [Creating the User Entity](#3creating-the-user-entity)
-4. [Creating the User Form and Validation System](#4creating-the-user-form-and-validation-system)
-5. [Security System](#5security-system)
-6. [Creating the RegistrationController and its Routing](#6creating-the-registrationcontroller-and-its-routing)
-7. [Template](#7template)
-8. [Result](#8result)
 
 ---------------------------------------------------------------------------------------
 
-* We will create the project through the console command: `composer create-project symfony/skeleton 01_registration_form`
+* We will create the project through the console command: `composer create-project symfony/skeleton 03_complete_login_and_registration_system`
 
 ---------------------------------------------------------------------------------------
 
@@ -37,7 +30,7 @@ The password will be coded and together with the rest of the collected data stor
 * `php bin/console doctrine:migrations:diff`
 * `php bin/console doctrine:migrations:migrate`
 
-# Registration Form
+# Complete Login and Registration System
 
 --------------------------------------------------------------------------------------------
 
@@ -48,13 +41,25 @@ The password will be coded and together with the rest of the collected data stor
 1. Created our project using the Console command's, 
 
 ```bash
-composer create-project symfony/skeleton 01_registration_form
+composer create-project symfony/skeleton 03_complete_login_and_registration_system
 ```
 
 2. In the next step we will access the project folder using:
 
 ```bash
-cd 01_registration_form
+cd 03_complete_login_and_registration_system
+```
+
+3. It is necessary to install the **server component**, to use our **Server Local**, through the console command:
+
+```bash
+composer require server --dev
+```
+
+4. Now, you will be able to view the result of demo when write in the terminal the command console:
+
+```bash
+php bin/console server:run
 ```
 
 --------------------------------------------------------------------------------------------
@@ -274,6 +279,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class UserType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -381,12 +388,14 @@ php bin/console security:encode-password
 _[config/packages/security.yaml](config/packages/security.yaml)_
 ```yml
 security:
+    # Encoder Configuration ##########################################################################
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         App\Entity\User: 
             algorithm: bcrypt
             cost: 4 # Number of times the password will be encrypted        
     ##################################################################################################
+    #...
 ```
 
 4. Symfony creates an instance of RequestMatcher for each access_control entry, which determines whether or not a given access control should be used on this request. The following access_control options are used for matching:
@@ -396,14 +405,17 @@ security:
 _[config/packages/security.yaml](config/packages/security.yaml)_
 ```yml
 security:
-    ##################################################################################################
+    #...
+    # acces controll ##################################################################################
+    # access as anonymous user, 'IS_AUTHENTICATED_ANONYMOUSLY', only to 'login' and 'registration'
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }    
         # ^/login puede entrar cualquier usuario (ANÓNIMO)
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]}   
+        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]}
+    ################################################################################################## 
 ```
 
 --------------------------------------------------------------------------------------------
@@ -481,7 +493,7 @@ _[src/Resources/config/routing/userRegistration.yml](src/Resources/config/routin
 ```yml
 user_registration:
     path: /register/
-    controller: App\Controller\RegistrationController::register
+    controller: App\Controller\SecurityController::register
 ```
 
 --------------------------------------------------------------------------------------------
@@ -520,7 +532,180 @@ _[templates/registration/register.html.twig](templates/registration/register.htm
 
 --------------------------------------------------------------------------------------------
 
-## 8.Result
+## 8.Install WebpackEncore and configuration of Bootstrap and Sass
+
+--------------------------------------------------------------------------------------------
+
+1. How we need to reference the entries, **js** [build/app.js](build/app.js) and **css** [build/app.css](build/app.css), within the template we will install the **Asset Component** using the console command:
+
+```bash
+composer require symfony/asset
+```
+
+2. Next, we will add to the base template [templates/base.html.twig](templates/base.html.twig), the links to our entries **js** and **css**.
+
+_[templates/base.html.twig](templates/base.html.twig)_
+```diff
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+++        {# add next line .............................................................................. #}
+++            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+++        {# add add previous line line ................................................................. #}        
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+++        {# add next line .............................................................................. #}
+++            <script src="{{ asset('build/app.js') }}"></script>
+++        {# add add previous line line ................................................................. #}         
+        {% endblock %}
+    </body>
+</html>
+```
+
+3. We are using **Symfony Flex** for the project, so we will initialize our project for **Webpack Encore** through:
+
+```bash
+composer require encore
+```
+
+4. Before, you need to make sure you have **Node.js** installed, otherwise you can access [https://nodejs.org/en/](https://nodejs.org/es/) and download it for your installation.
+
+5. Next, we will install **Npm.js**, using the command:
+
+```bash
+npm install @symfony/webpack-encore --save-dev
+```
+
+This component will generate a file [webpack.config.js](webpack.config.js), and add the directories [assets/](assets/) and [node_modules/](node_modules/) to [.gitignore](.gitignore) .
+
+6. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
+
+For before, you must add the dependencies that we need when we use **SASS** with the following command.
+
+```bash
+npm add sass-loader node-sass --dev
+```
+
+7. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
+
+_[webpack.config.js](webpack.config.js)_
+```diff
+    // uncomment to define the assets of the project
+    // .addEntry('js/app', './assets/js/app.js')
+++   .addEntry('app', './assets/js/app.js')
+    // .addStyleEntry('css/app', './assets/css/app.scss')
+++   .addStyleEntry('css/app', './assets/css/app.scss')
+    // uncomment if you use Sass/SCSS files
+    // .enableSassLoader()
+++    .enableSassLoader()
+```
+
+To activate **Sass-Loader**, which is the **SASS Reader**, and indicate the location of the inputs and outputs of the components **js** and **css**. Indicating `.addEntry ('js/app', './assets/js/app.js')` for the compilation of **js** and `.addStyleEntry (' css/app ',' ./assets/css/app.scss') `for the **css**.
+
+8. In the next step, we will create our stylesheet [assets/css/app.scss](assets/css/app.scss) using **SASS**. This sheet will be transpiled to **CSS**.
+
+_[assets/css/app.scss](assets/css/app.scss)_
+```scss
+//////////////////////////////// COMPLETED
+$acceVerde: #84a640;
+$acceAzul: #396696;
+h1 {
+    color: $acceVerde;
+    s {
+        color: $acceAzul;
+    }
+}
+```
+
+9. Next, we add this line `import '../css/app.scss';` in [assets/js/app.js](assets/js/app.js) to be able to compile **Sass** in **css**.
+
+_[assets/js/app.js](assets/js/app.js)_
+```js
+import '../css/app.scss';
+```
+
+10. Now, we can access [http://127.0.0.1:8000](http://127.0.0.1:8000) again expecting to see our changes in the template, but we will find two **404 errors** corresponding to the files [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) that we just included in our base template.
+
+To correct the errors, we must execute the following command that will generate the files from those created in the folders  [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js).
+
+```bash
+npm run watch
+```
+
+**Note:** If we launch a `npm run dev -watch` thread, the system will recognize the changes we make to the files and will regenerate the files that are linked in our template so that the changes are available.
+
+11. Now we can launch the server again using `php bin/console server:run` and access [http://127.0.0.1:8000](http://127.0.0.1:8000) to see the changes referred to in [assets/css/app.scss](assets/css/app.scss).
+
+12. To import **Bootstrap** in our project we will only have to execute.
+
+```bash
+npm install bootstrap --save
+```
+
+
+
+
+
+//////////////////////////////////////////////////////
+
+
+
+
+
+
+```bash
+npm add jquery
+```
+
+to install **Jquery**, and
+
+
+
+to install **Bootstrap-Sass** in its version 3.
+
+13. Additionally in this demo we will install the library **popper.js** using the command:
+
+```bash
+npm add popper.js
+```
+
+with it we will generate the windows with floating information.
+
+3. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives. And we will uncomment the following line of the file [webpack.config.js](webpack.config.js) to facilitate **jQuery** to **Bootstrap**.
+
+_[webpack.config.js](webpack.config.js)_
+```diff
+    // uncomment for legacy applications that require $/jQuery as a global variable
+    // .autoProvidejQuery()
+++ .autoProvidejQuery()
+```
+
+4. In the next step, we will modify our stylesheet [assets/css/app.scss](assets/css/app.scss) by importing the **Bootstrap** library. 
+
+_[assets/css/app.scss](assets/css/app.scss)_
+```diff
+++ @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+$acceVerde: #84a640;
+$acceAzul: #396696;
+h1 {
+    color: $acceVerde;
+    s {
+        color: $acceAzul;
+    }
+}
+```
+
+**Nota**: Esta hoja será compilada a **CSS**.
+
+--------------------------------------------------------------------------------------------
+
+## 9.Result 
 
 --------------------------------------------------------------------------------------------
 

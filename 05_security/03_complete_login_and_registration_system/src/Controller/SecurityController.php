@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-class RegistrationController extends Controller {
+class SecurityController extends Controller {
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
         // 1) build the form
         $user = new User();

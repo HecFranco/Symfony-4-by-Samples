@@ -221,7 +221,6 @@ npm install @symfony/webpack-encore --save-dev
 
 This component will generate a file [webpack.config.js](webpack.config.js), and add the directories [assets/](assets/) and [node_modules/](node_modules/) to [.gitignore](.gitignore) .
 
-
 --------------------------------------------------------------------------------------------
 
 ## 3.Installation and Configuration of **SASS**
