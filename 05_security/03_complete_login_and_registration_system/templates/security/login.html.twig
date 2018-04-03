@@ -1,0 +1,68 @@
+{# templates/security/login.html.twig #}
+{# ... you will probably extend your base template, like base.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+    {# It is necessary to declare the variable before the loop so that it is global#}
+    {% set register_new_user = "" %}
+    {% set keep_me_logged_in = "" %}    
+    {% for key, value in appConfig if value.configuration == "register_new_user" %}
+        {% set register_new_user = value.option.option %}
+    {% endfor %}
+    {% for key, value in appConfig if value.configuration == "keep_me_logged_in" %}
+        {% set keep_me_logged_in = value.option.option %}
+    {% endfor %}    
+        <section class="row h-100">
+            <div class="col-sm-12 my-auto">
+                <div class="col-md-6 col-sm-8 mx-auto">
+                    <div class="card border-none">
+                        <div class="card-body">
+                            <div class="mt-2 text-center">
+                                <h2>Loggin in your Account</h2>
+                            </div>
+                            <div class="mt-4">
+                                {% if error %}
+                                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+                                <form action="{{ path('user_login') }}" method="post">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Username:"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" id="password" name="_password" placeholder="Password:"/>
+                                    </div>
+                                    {# Remember option#}
+                                    {% if keep_me_logged_in == "yes" %}
+                                        <div class="form-group">                                                                     
+                                            <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                                            <label for="remember_me">Keep me logged in</label>
+                                        </div>
+                                    {% endif %}
+                                    {#
+                                    If you want to control the URL the user
+                                    is redirected to on success (more details below)
+                                    <input type="hidden" name="_target_path" value="/account" />
+                                    #}
+                                    <input type="hidden" name="_target_path" value="{{path('homepage')}}" />
+                                    <button class="btn btn-primary btn-block" type="submit">login</button>
+                                </form>
+                                {% if register_new_user != "administrators_only" %}
+                                    <p class="text-center">
+                                        Still not registered? <a href="{{ path('user_register')}}">Register Now</a>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 mt-5 footer">
+                        <p class="text-gray small text-center">
+                            &copy; 2018 Login/Register Forms. A FREE Symfony 4 and Bootstrap 4 component.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>                                    
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}           
+{% endblock %}

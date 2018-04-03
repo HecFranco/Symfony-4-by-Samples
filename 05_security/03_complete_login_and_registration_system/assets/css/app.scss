@@ -1,12 +1,32 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import url('https://fonts.googleapis.com/css?family=Hind:400,500,700');
 @import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
 html,
 body {
     width: 100%;
     height: 100%;
 }
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
 
+.valid:before {
+    position: relative;
+    left: -35px;
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+}
 /*
 body{
     font-family: 'Hind';

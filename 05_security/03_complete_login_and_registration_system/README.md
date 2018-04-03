@@ -17,11 +17,20 @@ The password will be coded and together with the rest of the collected data stor
 # Summary Symfony component`s to use
 
 * Server Component, `composer require server --dev`
+* Profiler Component, `composer require --dev profiler`
+* Apache-Pack Component, `composer require symfony/apache-pack`
+(Source: [https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules](https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules))
+* Var-dumper Component, `composer require var-dumper`
+(Source: [https://symfony.com/doc/current/components/var_dumper.html](https://symfony.com/doc/current/components/var_dumper.html))
+* Debug-Bundle Component, `composer require debug --dev`
+(Source: [https://symfony.com/doc/current/components/debug.html](https://symfony.com/doc/current/components/debug.html))
 * Twig Component, `composer require twig`
 * Doctrine Component, `composer require doctrine maker`
 * Form Componente, `composer require form`
 * Security Component, `composer require security`
 * Validator Component, `composer require validator`
+* Mailer Component, `composer require mailer`
+`composer require debug --dev`
 
 # Summary Console command`s to be used
 
@@ -722,3 +731,12 @@ php bin/console server:run
 ```
 
 3. Finally, you will have to click on the following link [http://127.0.0.1:8000/register](http://127.0.0.1:8000/register) to see your installation project.
+
+--------------------------------------------------------------------------------------------
+
+## 10.Configuring a Web Server
+
+--------------------------------------------------------------------------------------------
+
+* Apache-Pack Component, `composer require symfony/apache-pack`
+(Source: [https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules](https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules))

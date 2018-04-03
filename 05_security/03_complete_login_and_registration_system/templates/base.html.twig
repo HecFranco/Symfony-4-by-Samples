@@ -1,19 +1,33 @@
+{# appConfig .............................................................................................. #}
+    {% set app_name = "" %}    
+    {% for key, value in appConfig if value.configuration == "app_name" %}
+        {% set app_name = value.option.option %}
+    {% endfor %}
+{# .............................................................................................. appConfig #}    
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{{app_name}} - {{controllerName}}{% endblock %}</title>
         {% block stylesheets %}
             {# add next line .............................................................................. #}
-                <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+                <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
             {# add add previous line line ................................................................. #}
         {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
+        {# ...or you can read and display every flash message available #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% block javascripts %}
             {# add next line .............................................................................. #}
-                <script src="{{ asset('build/app.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
             {# add add previous line line ................................................................. #}            
         {% endblock %}
     </body>

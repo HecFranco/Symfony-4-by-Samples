@@ -1,0 +1,47 @@
+# config/doctrine/AppConfig.orm.yml
+App\Entity\AppConfig:
+    type: entity
+    # repository ######################################################     
+    #repositoryClass: App\Repository\AppConfigRepository
+    table: app_config
+# indexes #############################################################     
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+# /id #################################################################
+# fields ##############################################################                
+    fields:
+        configuration:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false    
+# /fields #############################################################
+# manyToOne ###########################################################          
+    manyToOne:      
+        option:
+            targetEntity: App\Entity\AppConfigOptions      
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                option:
+                    referencedColumnName: id
+            orphanRemoval: false
+# /manyToOne ##########################################################            
+# oneToMany ###########################################################               
+    oneToMany:
+        # appConfigTaxonomyList # no se encuentra dentro de la BD, pero se define en la entidad para listar los elementos
+        appConfigOptionsList:
+            targetEntity: App\Entity\AppConfigOptions
+            mappedBy: appConfig
+# /oneToMany ##########################################################               
+    lifecycleCallbacks: {  }                        

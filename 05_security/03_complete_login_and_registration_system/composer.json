@@ -4,22 +4,27 @@
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "^4.0",
         "symfony/console": "^4.0",
+        "symfony/debug": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/form": "^4.0",
         "symfony/framework-bundle": "^4.0",
-        "symfony/lts": "^4@dev",
         "symfony/maker-bundle": "^1.3",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^4.0",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/twig-bundle": "^4.0",
         "symfony/validator": "^4.0",
+        "symfony/var-dumper": "^4.0",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "symfony/debug-pack": "^1.0",
         "symfony/dotenv": "^4.0",
+        "symfony/profiler-pack": "^1.0",
         "symfony/web-server-bundle": "^4.0"
     },
     "config": {
