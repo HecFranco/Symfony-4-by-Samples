@@ -1,76 +1,174 @@
 {# templates/registration/register.html.twig #}
 {% extends 'base.html.twig' %}
 {% block body %}
-        <section class="row h-100">
-            <div id="message" class="w-100 p-3 position-absolute d-none" style="left:0px;">
-                <div class="col-sm-6  mx-auto">
-                    <div  class="alert alert-success" role="alert">
-                        <span id="letter" class="invalid">
-                            <i class="fa fa-times"></i>
-                            A <b>lowercase</b> letter
-                        </span><br>
-                        <span id="capital" class="invalid">
-                            <i class="fa fa-times"></i>
-                            A <b>capital (uppercase)</b> letter
-                        </span><br>
-                        <span id="number" class="invalid">
-                            <i class="fa fa-times"></i>
-                            A <b>number</b></span><br>
-                        <span id="length" class="invalid">
-                            <i class="fa fa-times"></i>
-                            Minimum <b>8 characters</b></span><br>
-                    </div>
+
+    {# It is necessary to declare the variable before the loop so that it is global#}
+    {% set first_user = "" %}
+    {% for key, value in appConfig if value.name == "first_user" %}
+        {% set first_user = value.option.name %}
+    {% endfor %}
+    <section class="row h-100">
+        <div id="message" class="w-100 p-3 position-absolute d-none" style="left:0px;">
+            <div class="col-sm-6  mx-auto">
+                <div  class="alert alert-success" role="alert">
+                    <span id="letter" class="invalid">
+                        <i class="fa fa-times"></i>
+                        A <b>lowercase</b> letter
+                    </span><br>
+                    <span id="capital" class="invalid">
+                        <i class="fa fa-times"></i>
+                        A <b>capital (uppercase)</b> letter
+                    </span><br>
+                    <span id="number" class="invalid">
+                        <i class="fa fa-times"></i>
+                        A <b>number</b>
+                    </span><br>
+                    <span id="length" class="invalid">
+                        <i class="fa fa-times"></i>
+                        Minimum <b>8 characters</b>
+                    </span><br>
                 </div>
             </div>
-            <div class="col-sm-12 my-auto">
-                <div class="col-md-6 col-sm-8 mx-auto">
-                    <div class="card border-none">
-                        <div class="card-body">
-                            <div class="mt-2 text-center">
-                                <h2>Create Your Account</h2>
-                            </div>
-                            <p class="mt-4 text-gray lead text-center">
-                                Sign up to get started with Authority
-                            </p>
-                            <div class="mt-4">
-                                {{ form_start(form) }}
-                                    <div class="form-group">
-                                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder' : 'Enter your UserName'} }) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder' : 'Enter email address'} }) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder' : 'Enter password'} }) }}
-                                    </div> 
-                                    <div class="form-group">
-                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder' : 'Confirm password'} }) }}
-                                    </div> 
-                                    <div class="form-group">
-                                        <div class="d-inline">                                                                   
-                                            {{ form_widget(form.termsAccepted) }} Accept terms.
-                                        </div>
-                                        <div class="d-inline float-right">
-                                            <input class="" type="checkbox" id="show_password"> Show password.
+        </div>
+        <div class="col-sm-12 my-auto">
+            <div class="col-md-6 col-sm-8 mx-auto">
+                <div class="card border-none">
+                    <div class="card-body">
+                        <div class="mt-2 text-center">
+                            <h2>Create 
+                                {% if controllerName == "First User" %}
+                                    {{controllerName}}
+                                {% else %}
+                                    Your 
+                                {% endif %}
+                                Account
+                            </h2>
+                        </div>
+                        <p class="mt-4 text-gray lead text-center">
+                            Sign up to get started with Authority
+                        </p>
+                        {% if first_user == "first_user" %}
+                        <div class="col-md-12">
+                            <div class="card-header">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-sm bg-gradient" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
                                         </div>
                                     </div>
-                                    {{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary btn-block'} }) }}
-                                {{ form_end(form) }}
-                                <p class="text-center">
-                                    Already have an account? <a href="{{ path('user_login')}}">Login Now</a>
-                                </p>
+                                </div>
+                                <div class="card-form-wizard">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div id="rootwizard-1">
+                                                <ul class="nav nav-pills wizard-header">
+                                                    <li class=" col-lg-6" id="card_configuration">
+                                                        <a href="#configuration" data-toggle="tab" class="active show" id="tab_configuration">
+                                                            <span class="main-text">
+                                                                <span class="h3">1. Configuration</span>
+                                                                <br>
+                                                                <small>No validation required</small>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="col-lg-6 d-none" id="card_registration">
+                                                        <a href="#registration" data-toggle="tab" id="tab_registration">
+                                                            <span class="main-text">
+                                                                <span class="h3">2. Registration</span>
+                                                                <br>
+                                                                <small>This step has validation</small>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content clearfix">
+                                                    <div class="tab-pane active show" id="form_configuration">
+                                                        <div class="col-md-6">
+                                                            <form method="post" id="wizard-stage-1">
+                                                            </form>
+                                                        </div>
+                                                        <ul class="pager wizard">
+                                                            <li class="next">
+                                                                <a class="btn btn-primary waves-effect waves-light" href="#" id="anchor_registration">
+                                                                    Next
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="tab-pane {% if first_user != "first_user" %}active show{% endif %}" id="form_registration">
+                                                        <div class="col-md-12">
+                        {% endif %}
+                                                            <div class="mt-4">
+                                                                {{ form_start(form) }}
+                                                                    <div class="form-group">
+                                                                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder' : 'Enter your UserName'} }) }}
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder' : 'Enter email address'} }) }}
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder' : 'Enter password'} }) }}
+                                                                    </div> 
+                                                                    <div class="form-group">
+                                                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder' : 'Confirm password'} }) }}
+                                                                    </div> 
+                                                                    <div class="form-group">
+                                                                        <div class="d-inline">                                                                   
+                                                                            {{ form_widget(form.termsAccepted) }} Accept terms.
+                                                                        </div>
+                                                                        <div class="d-inline float-right">
+                                                                            <input class="" type="checkbox" id="show_password"> Show password.
+                                                                        </div>
+                                                                    </div>
+                                                                    {% if first_user == "first_user" %}
+                                                                        <ul class="pager wizard">
+                                                                            <li class="previous disabled">
+                                                                                <a class="btn btn-secondary waves-effect waves-light" href="#" id="anchor_configuration">
+                                                                                    <i class="fa fa-arrow-circle-o-left fa-1x"></i>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="next">
+                                                                    {% endif %}
+                                                                            {% if first_user != "first_user" %}
+                                                                                {{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary waves-effect waves-light'} }) }}
+                                                                            {% else %}
+                                                                                {{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary btn-block'} }) }}
+                                                                            {% endif %}
+                                                                    {% if first_user == "first_user" %}
+                                                                            </li>
+                                                                        </ul> 
+                                                                    {% endif %}                                                                   
+                                                                {{ form_end(form) }}
+                                                                {% if first_user != "first_user" %}
+                                                                    <p class="text-center">
+                                                                        Already have an account? <a href="{{ path('user_login')}}">Login Now</a>
+                                                                    </p>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                        {% if first_user == "first_user" %}                                                        	
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>   
+                        {% endif %}         
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-12 mt-5 footer">
+                                        <p class="text-gray small text-center">
+                                            &copy; 2018 Login/Register Forms. A FREE Symfony 4 and Bootstrap 4 component.
+                                        </p>
+                                    </div>
+                                </div>                              
+                            </div>                          
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                    <div class="col-sm-12 mt-5 footer">
-                        <p class="text-gray small text-center">
-                            &copy; 2018 Login/Register Forms. A FREE Symfony 4 and Bootstrap 4 component.
-                        </p>
-                    </div>
                 </div>
             </div>
-        </section>    
+        </div>
+    </section>    
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

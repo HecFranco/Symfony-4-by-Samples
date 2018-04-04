@@ -62,6 +62,8 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }    
         # ^/login puede entrar cualquier usuario (ANÓNIMO)
+        - { path: ^/check, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/test, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/send-email, roles: IS_AUTHENTICATED_ANONYMOUSLY}

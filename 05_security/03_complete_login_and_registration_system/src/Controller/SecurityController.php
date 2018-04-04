@@ -18,10 +18,10 @@ namespace App\Controller;
 /*************************************************************************************************************/    
 /* Entity ****************************************************************************************************/    
     use App\Entity\User;
-    use App\Entity\AppConfig;    
+    use App\Entity\AppConfig; 
+    use App\Entity\AppConfigOptions;    
 /*************************************************************************************************************/
 class SecurityController extends Controller {
-
     private $session;
     public function __construct(){ $this->session = new Session(); }
     
@@ -32,11 +32,30 @@ class SecurityController extends Controller {
             $controllerName = "Register" ;
         /*****************************************************************************************************/
         /* Position the Repositories  ************************************************************************/
-            $appConfig_repo = $em->getRepository(AppConfig::class);  
+            $appConfig_repo = $em->getRepository(AppConfig::class);
+            $appConfigOptions_repo = $em->getRepository(AppConfigOptions::class);
+            $user_repo = $em->getRepository(User::class);
         /*****************************************************************************************************/
         /* Queries *******************************************************************************************/
-            $appConfig = $appConfig_repo->findAll(); 
-        /*****************************************************************************************************/        
+            $appConfig = $appConfig_repo->findAll();
+            $appConfigOptions_firstUser = $appConfigOptions_repo->findOneBy(array('name'=>'no_first_user'));
+            $userList = $user_repo->findAll();
+        /*****************************************************************************************************/
+        /* Condition Whitout registered User *****************************************************************/
+            $appConfig_fristUser = $appConfig_repo->findOneBy(array('name'=>'first_user'));
+            if($userList == null){
+                $controllerName = "First User" ;
+                $role = 'ROLE_ADMIN';
+            }elseif($userList != null){
+                $role = 'ROLE_USER';
+                $appConfigOption_fristUser = $appConfig_fristUser->getOption();
+                if( $appConfigOption_fristUser->getName() != 'no_first_user' ){
+                    $appConfigOption_fristUser->setName('no_first_user');
+                    $em->persist($appConfigOption_fristUser);
+                    $em->flush();
+                }
+            }
+        /*****************************************************************************************************/               
         // 1) build the form
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -46,10 +65,10 @@ class SecurityController extends Controller {
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $user->setRole('ROLE_USER');
+            $user->setRole($role);
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $entityManager->persist($user);            
             $entityManager->flush();
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
@@ -65,7 +84,8 @@ class SecurityController extends Controller {
             array(
                 'form' => $form->createView(),
                 'appConfig'=>$appConfig,
-                'controllerName'=>$controllerName
+                'controllerName'=>$controllerName,
+                'appConfigOptions_repo'=>$appConfigOptions_repo->findAll()
             )
         );
     }
@@ -76,11 +96,18 @@ class SecurityController extends Controller {
         $controllerName = "Register" ;        
     /*****************************************************************************************************/
     /* Position the Repositories  ************************************************************************/
-        $appConfig_repo = $em->getRepository(AppConfig::class);  
+        $appConfig_repo = $em->getRepository(AppConfig::class);
+        $user_repo = $em->getRepository(User::class);
     /*****************************************************************************************************/
     /* Queries *******************************************************************************************/
-        $appConfig = $appConfig_repo->findAll(); 
-    /*****************************************************************************************************/         
+        $appConfig = $appConfig_repo->findAll();
+        $userList = $user_repo->findAll();
+    /*****************************************************************************************************/
+    /* Condition Whitout registered User *****************************************************************/
+        if($userList == null){
+            return $this->redirectToRoute('user_register');
+        }
+    /*****************************************************************************************************/            
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -170,5 +197,28 @@ class SecurityController extends Controller {
             <h1>Email Send</h1>
             </body>
         </html>');
+    }
+
+
+
+    public function test(Request $request) {
+        /* Initial Charge ************************************************************************************/
+            $em = $this->getDoctrine()->getManager();
+        /*****************************************************************************************************/
+        /* Position the Repositories  ************************************************************************/
+            $appConfig_repo = $em->getRepository(AppConfig::class);
+            $appConfigOptions_repo = $em->getRepository(AppConfigOptions::class);
+            $user_repo = $em->getRepository(User::class);
+        /*****************************************************************************************************/
+        /* Queries *******************************************************************************************/
+            $appConfig = $appConfig_repo->findAll();
+            $appConfigOptions_firstUser = $appConfigOptions_repo->findOneByName('first_user');
+            $appConfigOptions_firstUser->setName('hola');
+
+            var_dump($appConfigOptions_firstUser->getName());
+            var_dump($appConfigOptions_firstUser->getAppConfig()->getName());
+            // $appConfig_fristUser->setConfiguration('login_form');
+            $em->persist($appConfigOptions_firstUser);
+            $em->flush();
     }
 }

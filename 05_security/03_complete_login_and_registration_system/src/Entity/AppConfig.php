@@ -24,12 +24,12 @@ class AppConfig {
 /**************************************************************************************************************/
 /* option *****************************************************************************************************/
     private $option;
-	public function setOption (AppConfigOptions $option = null) { $this->option = $option; return $this; }
+	public function setOption (AppConfigOptions $option =null) { $this->option = $option; /*return $this;*/ }
 	public function getOption() { return $this->option; } 
 /**************************************************************************************************************/
-/* configuration **********************************************************************************************/
-	private $configuration;
-	public function setConfiguration($configuration) { $this->configuration = $configuration; return $this; }
-	public function getConfiguration() { return $this->configuration; }
+/* name *******************************************************************************************************/
+	private $name;
+	public function setName($name) { $this->name = $name; /*return $this;*/ }
+	public function getName() { return $this->name; }
 /**************************************************************************************************************/
 }

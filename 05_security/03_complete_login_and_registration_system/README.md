@@ -31,6 +31,8 @@ The password will be coded and together with the rest of the collected data stor
 * Validator Component, `composer require validator`
 * Mailer Component, `composer require mailer`
 `composer require debug --dev`
+* Check Requirements for Running Symfony Component, `composer require symfony/requirements-checker` 
+ (Source: [https://symfony.com/doc/current/reference/requirements.html](https://symfony.com/doc/current/reference/requirements.html))
 
 # Summary Console command`s to be used
 

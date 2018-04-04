@@ -6,3 +6,4 @@ routing_distributed:
     # loads routes from the given routing file stored in some bundle
     resource: '..\src\Resources\config\routing.yml' 
     type: yaml
+

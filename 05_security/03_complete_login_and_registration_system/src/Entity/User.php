@@ -38,7 +38,7 @@ class User implements UserInterface {
     }
     // other methods, including security methods like getRoles()
 	private $role;
-	public function setRole($role) { $this->role = $role; return $this; }
+    public function setRole($role) { $this->role = $role; /*return $this;*/ }
 	public function getRole() { return $this->role; }
 	public function getRoles(){ return array('ROLE_USER','ROLE ADMIN'); }
     // ... and eraseCredentials()

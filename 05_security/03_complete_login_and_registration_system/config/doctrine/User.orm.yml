@@ -36,3 +36,4 @@ App\Entity\User:
             length: null
             options:
                 fixed: false 
+    lifecycleCallbacks: {  }                

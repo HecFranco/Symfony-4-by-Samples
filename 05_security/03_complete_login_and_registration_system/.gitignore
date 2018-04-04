@@ -2,6 +2,7 @@
 /.env
 /public/bundles/
 /var/
+/extra/
 /vendor/
 ###< symfony/framework-bundle ###
 ###> symfony/webpack-encore-pack ###

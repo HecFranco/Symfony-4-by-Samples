@@ -5,11 +5,11 @@
     {# It is necessary to declare the variable before the loop so that it is global#}
     {% set register_new_user = "" %}
     {% set keep_me_logged_in = "" %}    
-    {% for key, value in appConfig if value.configuration == "register_new_user" %}
-        {% set register_new_user = value.option.option %}
+    {% for key, value in appConfig if value.name == "register_new_user" %}
+        {% set register_new_user = value.option.name %}
     {% endfor %}
-    {% for key, value in appConfig if value.configuration == "keep_me_logged_in" %}
-        {% set keep_me_logged_in = value.option.option %}
+    {% for key, value in appConfig if value.name == "keep_me_logged_in" %}
+        {% set keep_me_logged_in = value.option.name %}
     {% endfor %}    
         <section class="row h-100">
             <div class="col-sm-12 my-auto">

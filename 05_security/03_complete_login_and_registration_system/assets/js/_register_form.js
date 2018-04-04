@@ -12,28 +12,59 @@ $(document).ready(function(){
         var capital = document.getElementById("capital");
         var number = document.getElementById("number");
         var length = document.getElementById("length");
-    /***************************************************************************************************/          
+    /***************************************************************************************************/  
+    /* messages ****************************************************************************************/    
+        var tab_configuration = document.getElementById("tab_configuration");
+        var tab_registration = document.getElementById("tab_registration");
+        var card_configuration = document.getElementById("card_configuration");
+        var card_registration = document.getElementById("card_registration");
+        var form_configuration = document.getElementById("form_configuration");
+        var form_registration = document.getElementById("form_registration");
+        var anchor_configuration = document.getElementById("anchor_configuration");
+        var anchor_registration = document.getElementById("anchor_registration");
+
+        var progress_bar = document.getElementsByClassName("progress-bar");
+    /***************************************************************************************************/              
     // Listen for click events
     document.addEventListener('click', function (event) {
         // If the clicked element isn't our show password checkbox, bail
-        if (event.target.id !== 'show_password') return;
-        console.log('input '+event.target.id+' click detected');
-        // Get the password field
-        var password = document.getElementById('user_plainPassword_first');
-        var confirm_password = document.getElementById('user_plainPassword_second');
-        if (!password) return;
-        // Check if the password should be shown or hidden
-        if (event.target.checked) {
-            // Show the password
-            password.type = 'text';
-            confirm_password.type = 'text';
-        } else {
-            // Hide the password
-            password.type = 'password';
-            confirm_password.type = 'password';
+        if (event.target.id == 'show_password'){
+            console.log('input '+event.target.id+' click detected');
+            // Get the password field
+            var password = document.getElementById('user_plainPassword_first');
+            var confirm_password = document.getElementById('user_plainPassword_second');
+            if (!password) return;
+            // Check if the password should be shown or hidden
+            if (event.target.checked) {
+                // Show the password
+                password.type = 'text';
+                confirm_password.type = 'text';
+            } else {
+                // Hide the password
+                password.type = 'password';
+                confirm_password.type = 'password';
+            }            
         }
+        if( event.target == anchor_registration || event.target == anchor_configuration || event.target.parentNode == anchor_configuration ){
+            console.log('first_user_change_form');
+            tab_configuration.classList.toggle('active');
+            tab_configuration.classList.toggle('show');
+            tab_registration.classList.toggle('active');
+            tab_registration.classList.toggle('show'); 
+            card_configuration.classList.toggle('d-none');
+            card_registration.classList.toggle('d-none'); 
+            form_configuration.classList.toggle('active');
+            form_registration.classList.toggle('active');
+            form_configuration.classList.toggle('show');
+            form_registration.classList.toggle('show');
+            if(progress_bar[0].style.width == '50%'){
+                progress_bar[0].style.width = '100%';
+            }else{
+                progress_bar[0].style.width = '50%'; 
+            }
+        }
+    }, false);      
 
-    }, false);
     window.addEventListener('keyup',function (event) {
         // If the clicked element isn't our show password checkbox, bail
         if (event.target.id === 'user_username'){
