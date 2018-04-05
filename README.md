@@ -16,8 +16,11 @@ We will make our first page in a **Symfony Project 4** from scratch.
 
 ## [01 Routing](/01_Routing/)
 
-### [01 Basic Routing](/01_Routing/01_Basic_Routing)
-We will created a little web using **Basic Routing**.
+### [01 Basic Routing Using annotation](/01_Routing/01_Basic_Routing_Using_annotation)
+We will created a little web using **Basic Routing** using the **annotation** routing type.
+
+### [02 Basic Routing Using yml](/01_Routing/02_Basic_Routing_Using_yml)
+We will created a little web using **Basic Routing** using the **yml** routing type.
 
 ## [02 Controller](/02_Controller/)
 

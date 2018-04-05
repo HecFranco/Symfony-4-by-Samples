@@ -1,10 +1,10 @@
-# Purpose of the Demo - Basic Routing
+# Purpose of the Demo - Basic Routing Using Yml
 
-We will created a little web using **Basic Routing**.
+We will created a little web using **Basic Routing** using the **yml** routing type.
 
 ---------------------------------------------------------------------------------------
 
-* We will create the project through the console command: `composer create-project symfony/skeleton 01_basic_routing`
+* We will create the project through the console command: `composer create-project symfony/skeleton 02_Basic_Routing_Using_yml`
 
 ---------------------------------------------------------------------------------------
 
@@ -17,13 +17,13 @@ We will created a little web using **Basic Routing**.
 1. Created our project using the Console command's, 
 
 ```bash
-composer create-project symfony/skeleton 01_basic_routing
+composer create-project symfony/skeleton 02_Basic_Routing_Using_yml
 ```
 
 2. In the next step we will access the project folder using:
 
 ```bash
-cd 01_basic_routing
+cd 02_Basic_Routing_Using_yml
 ```
 
 3. To work easly, we need install the **server component** of **Symfony** for its, we will launch the console command:
@@ -70,7 +70,9 @@ class HomeController {
 
 **Note**: It is very important, if we are using the **object Response** we must use the next line `use Symfony\Component\HttpFoundation\Response;` in the **controller**.
 
-7. Now, we will modified the method index into [src/controller/HomeController.php](src/controller/HomeController.php), for can use **variable** in our routing.
+7. Now you can launch the server by typing the console command `php bin / cosnole server: run` and see the results of the page in [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+8. Now, we will modified the method index into [src/controller/HomeController.php](src/controller/HomeController.php), for can use **variable** in our routing.
 
 _[src/controller/HomeController.php](src/controller/HomeController.php)_
 ```diff
@@ -88,7 +90,7 @@ class HomeController {
 }
 ```
 
-8. The **routing system** offers much more interesting possibilities than those of the previous section. Many routes contain one or more variables, also called **placeholders**. In this example we will created the next routing:
+9. The **routing system** offers much more interesting possibilities than those of the previous section. Many routes contain one or more variables, also called **placeholders**. In this example we will created the next routing:
 
 _[/config/routes.yaml](/config/routes.yaml)_
 ```yml
@@ -97,7 +99,7 @@ viewSection:
     controller: App\Controller\newsController::viewSection
 ```
 
-9. We can now create the method inside the controller [src/controller/newsController.php](src/controller/newsController.php) that requires a variable.
+10. We can now create the method inside the controller [src/controller/newsController.php](src/controller/newsController.php) that requires a variable.
 
 _[src/controller/newsController.php](src/controller/newsController.php)_
 ```php
@@ -117,3 +119,5 @@ class newsController {
     }
 }
 ```
+
+11. Now you can launch the server by typing the console command `php bin / cosnole server: run` and see the results of the page in [http://127.0.0.1:8000](http://127.0.0.1:8000).
