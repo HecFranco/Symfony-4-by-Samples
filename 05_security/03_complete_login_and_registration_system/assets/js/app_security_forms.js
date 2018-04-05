@@ -1,1 +1,0 @@
-import '../js/_register_form.js';

@@ -1,3 +1,0 @@
-send_email_test:
-    path: /send-email/
-    controller: App\Controller\SecurityController::sendEmailRegister

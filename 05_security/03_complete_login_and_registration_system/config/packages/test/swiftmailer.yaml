@@ -1,5 +1,0 @@
-swiftmailer:
-# You can disable sending email by setting the disable_delivery option to true, 
-# which is the default value used by Symfony in the test environment (email 
-# messages will continue to be sent in the other environments):
-    disable_delivery: true

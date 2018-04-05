@@ -1,6 +1,0 @@
-ajax_user_nick:
-    path: /user-nick-exist
-    controller: App\Controller\SecurityController::userNickExist
-ajax_user_email:
-    path: /user-email-exist
-    controller: App\Controller\SecurityController::userEmailExist

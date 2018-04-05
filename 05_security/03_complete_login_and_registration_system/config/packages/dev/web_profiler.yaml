@@ -1,7 +1,0 @@
-web_profiler:
-    toolbar: true
-    intercept_redirects: false
-    excluded_ajax_paths:  ^/((index|app(_[\w]+)?)\.php/)?_wdt    
-
-framework:
-    profiler: { only_exceptions: false }
