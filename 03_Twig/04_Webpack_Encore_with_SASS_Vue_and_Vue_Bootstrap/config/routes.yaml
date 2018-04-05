@@ -1,0 +1,4 @@
+# Importante en los archivos con la extensión .yaml cada sangría es igual a 4 espacios !!!!
+index:
+    path: /
+    controller: App\Controller\DefaultController::index

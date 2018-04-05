@@ -1,0 +1,10 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+$acceVerde: #84a640;
+$acceAzul: #396696;
+h1 {
+    color: $acceVerde;
+    s {
+        color: $acceAzul;
+    }
+}
