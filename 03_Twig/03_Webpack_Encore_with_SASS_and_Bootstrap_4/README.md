@@ -1,6 +1,6 @@
 # Purpose of the Demo - 03 Webpack Encore with SASS and Bootstrap
 
-We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap**.
+We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap 4**.
 
 # Phases of the Demo
 1. [Project creation and ready](#1project-creation-and-ready)

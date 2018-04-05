@@ -13,7 +13,7 @@ $(document).ready(function(){
         var number = document.getElementById("number");
         var length = document.getElementById("length");
     /***************************************************************************************************/  
-    /* messages ****************************************************************************************/    
+    /* forms *******************************************************************************************/    
         var tab_configuration = document.getElementById("tab_configuration");
         var tab_registration = document.getElementById("tab_registration");
         var card_configuration = document.getElementById("card_configuration");
@@ -22,7 +22,6 @@ $(document).ready(function(){
         var form_registration = document.getElementById("form_registration");
         var anchor_configuration = document.getElementById("anchor_configuration");
         var anchor_registration = document.getElementById("anchor_registration");
-
         var progress_bar = document.getElementsByClassName("progress-bar");
     /***************************************************************************************************/              
     // Listen for click events
@@ -45,6 +44,7 @@ $(document).ready(function(){
                 confirm_password.type = 'password';
             }            
         }
+        // Change Forms
         if( event.target == anchor_registration || event.target == anchor_configuration || event.target.parentNode == anchor_configuration ){
             console.log('first_user_change_form');
             tab_configuration.classList.toggle('active');
@@ -64,7 +64,7 @@ $(document).ready(function(){
             }
         }
     }, false);      
-
+    // Listen for keyup events
     window.addEventListener('keyup',function (event) {
         // If the clicked element isn't our show password checkbox, bail
         if (event.target.id === 'user_username'){
@@ -113,7 +113,6 @@ $(document).ready(function(){
         }
         if (event.target.id === 'user_plainPassword_first' || event.target.id === 'user_plainPassword_second'){
             console.log('input '+event.target.id+' keyup detected');
-
             if(plainPassword_first.value != plainPassword_second.value){
                 console.log('different password');
                 submit_buttom.setAttribute('disabled','');
@@ -127,6 +126,7 @@ $(document).ready(function(){
             }
         }
     }, false);
+    // Listen for focus events
     window.addEventListener('focus',function (event) {
         // When the user clicks on the password field, show the message box
         if (event.target.id === 'user_plainPassword_first' ){
@@ -138,9 +138,10 @@ $(document).ready(function(){
         // When the user clicks outside of the password field, hide the message box
         if (event.target.id === 'user_plainPassword_first' ){
             console.log('condition password hidden');
-            message.classList.remove('d-none');
+            message.classList.add('d-none');
         }        
     }, true);
+    // Validator
     window.addEventListener('keyup',function (event) {
         // Validate lowercase letters
         var lowerCaseLetters = /[a-z]/g;

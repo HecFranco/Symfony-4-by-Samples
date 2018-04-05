@@ -1,8 +1,10 @@
 # Purpose of the Demo - Complete Login and Registration System
 
-1. Create a **Complete Login and Registration System** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
+We will create a **Complete Login and Registration System** that requires a username, email and password. It will also allow you to add a check box required for the record.
 
-The password will be coded and together with the rest of the collected data stored in the database.
+The password will be encrypted and together with the rest of the collected data stored in the database.
+
+The system will differentiate between **First User** and the rest, allowing you to configure the level of security and registration.
 
 # Phases of the Demo
 1. []()
@@ -10,7 +12,7 @@ The password will be coded and together with the rest of the collected data stor
 
 ---------------------------------------------------------------------------------------
 
-* We will create the project through the console command: `composer create-project symfony/skeleton 03_complete_login_and_registration_system`
+* We will create the project through the console command: `composer create-project symfony/skeleton 03_Complete_Login_and_Registration_System`
 
 ---------------------------------------------------------------------------------------
 
@@ -52,13 +54,13 @@ The password will be coded and together with the rest of the collected data stor
 1. Created our project using the Console command's, 
 
 ```bash
-composer create-project symfony/skeleton 03_complete_login_and_registration_system
+composer create-project symfony/skeleton 03_Complete_Login_and_Registration_System
 ```
 
 2. In the next step we will access the project folder using:
 
 ```bash
-cd 03_complete_login_and_registration_system
+cd 03_Complete_Login_and_Registration_System
 ```
 
 3. It is necessary to install the **server component**, to use our **Server Local**, through the console command:

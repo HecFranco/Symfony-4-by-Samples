@@ -1,6 +1,6 @@
 # Purpose of the Demo - Registration Form
 
-1. Create a **Registration Form** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
+We will created a **Registration Form** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
 
 The password will be coded and together with the rest of the collected data stored in the database.
 

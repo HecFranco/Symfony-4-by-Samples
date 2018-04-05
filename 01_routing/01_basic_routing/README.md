@@ -1,6 +1,6 @@
 # Purpose of the Demo - Basic Routing
 
-1. Create a little web using **Basic Routing**.
+We will created a little web using **Basic Routing**.
 
 ---------------------------------------------------------------------------------------
 

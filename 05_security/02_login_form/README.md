@@ -1,6 +1,6 @@
 # Purpose of the Demo - Login Form
 
-1. Create a **Login Form** that requires a username or email and password. 
+We will created a **Login Form** that requires a username or email and password. 
 
 # Phases of the Demo
 
