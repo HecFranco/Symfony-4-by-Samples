@@ -1,9 +1,0 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-homepage:
-    path: /
-    controller: App\Controller\HomeController::index
-viewSection:
-    path: /news/{section}
-    controller: App\Controller\newsController::viewSection    

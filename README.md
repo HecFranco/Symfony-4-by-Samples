@@ -26,7 +26,7 @@ We will created a little web using **Basic Routing**.
 ### [03 Webpack Encore with SASS and Bootstrap 4](/03_Twig/03_Webpack_Encore_with_SASS_and_Bootstrap_4)
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap 4**.
 
-### [04 Webpack Encore with SASS, Vue and Vue-Bootstrap](/03_Twig/03_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap)
+### [04 Webpack Encore with SASS, Vue and Vue-Bootstrap](/03_Twig/04_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap)
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass**, **Vue** and **VueBootstrap** (Vue + Bootstrap 4).
 
 ## [04 Persist Data](/04_Persist_Data/)
