@@ -1,0 +1,40 @@
+# config/doctrine/AppConfigOptions.orm.yml
+App\Entity\AppConfigOptions:
+    type: entity
+    #repositoryClass: App\Repository\AppConfigOptionsRepository
+    table: app_config_options
+# indexes #############################################################
+    indexes:
+        app_config:
+            columns:
+                - app_config
+# /indexes ############################################################       
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            length: 100
+            nullable: false
+            unique: false
+            column: name   
+    manyToOne:      
+        appConfig:
+            targetEntity: App\Entity\AppConfig       
+            cascade: {  }
+            fetch: LAZY
+            nullable: true
+            mappedBy: null
+            inversedBy: appConfigOptionsList
+            joinColumns:
+                app_config:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }            

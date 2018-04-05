@@ -1,0 +1,71 @@
+security:
+    # Encoder Configuration ##########################################################################
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User: 
+            algorithm: bcrypt
+            cost: 4 # Number of times the password will be encrypted        
+    ##################################################################################################    
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # in_memory: { memory: ~ }
+        our_db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            # pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
+            # activate different ways to authenticate
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            ###############################################
+            form_login:
+                login_path: user_login
+                check_path: user_login
+                # username_parameter: _username
+                # password_parameter: _password
+                # always_use_default_target_path: false
+                # default_target_path: /user/home
+                # target_path_parameter: _target_path
+                # use_referer: false
+                # post_only: true
+                # remember_me: false
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                # require_previous_session: false
+            logout:
+                # csrf_parameter: csrf_token
+                # csrf_token_generator: ~
+                # csrf_token_id: logout
+                path: /logout
+                target: /
+                success_handler: ~
+                invalidate_session: true
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    # acces control ###################################################################################
+    # access as anonymous user, 'IS_AUTHENTICATED_ANONYMOUSLY', only to 'login' and 'registration'
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }    
+        # ^/login puede entrar cualquier usuario (ANÓNIMO)
+        - { path: ^/check, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/test, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/send-email, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN]}
+    ##################################################################################################         

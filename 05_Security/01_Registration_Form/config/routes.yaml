@@ -1,0 +1,8 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+# Importante en los archivos con extensión .yaml cada sangrado equivale a 4 espacios!!!
+routing_distributed:
+    # loads routes from the given routing file stored in some bundle
+    resource: '..\src\Resources\config\routing.yml' 
+    type: yaml

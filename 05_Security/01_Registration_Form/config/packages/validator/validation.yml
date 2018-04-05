@@ -1,0 +1,21 @@
+# https://symfony.com/doc/current/validation.html#basic-constraints
+App\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+    properties:
+        email:
+            - Email:
+                message: El email "{{ value }}" no es válido.
+                checkMX: true
+            - NotBlank: ~
+        username:
+            - NotBlank: ~               
+            - Length:
+                min: 5
+                max: 50
+                minMessage: 'Your first name must be at least {{ limit }} characters long'
+                maxMessage: 'Your first name cannot be longer than {{ limit }} characters'            
+        password:
+            - NotBlank: ~              
+        plainPassword:
+            - NotBlank: ~ 

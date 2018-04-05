@@ -1,0 +1,13 @@
+# See https://symfony.com/doc/current/email/dev_environment.html
+swiftmailer:
+    # send all emails to a specific address
+    # delivery_addresses: ['me@example.com'] 
+    # Sending to a Specified Address but with Exceptions
+    # delivery_whitelist:
+       # all email addresses matching these regexes will be delivered
+       # like normal, as well as being sent to dev@example.com
+       # - '/@specialdomain\.com$/'
+       # - '/^admin@mydomain\.com$/'
+# Viewing from the Web Debug Toolbar       
+web_profiler:
+    intercept_redirects: true         
