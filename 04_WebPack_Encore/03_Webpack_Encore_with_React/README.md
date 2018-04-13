@@ -25,10 +25,8 @@ We will do an installation from the beginning where we will include **Webpack En
 # Summary of the components of the Webpack to use
 
 * Npm.js Component, `npm install @symfony/webpack-encore --save-dev`
-* Sass-loader Component, `npm add sass-loader --dev`
-* Node Sass Component, `npm add node-sass --dev`
-* Vue plugin, `npm install --save vue`
-* Bootstrap-Vue, `npm i bootstrap-vue`
+* Babel-preset-react Component, `npm add --dev babel-preset-react`
+* React, React-Dom and Prop-types Component, `npm add react react-dom prop-types`
 
 # Source
 
@@ -56,40 +54,43 @@ cd 03_Webpack_Encore_with_React
 
 3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
 
-_[src/Controller/DefaultController.php](src/Controller/DefaultController.php)_
+_[src/Controller/DefaultController.php](./src/Controller/DefaultController.php)_
 ```php
 <?php
 namespace App\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class DefaultController extends Controller{
-    public function data()
-    {
+class DefaultController extends Controller {
+    public function index() {
+        return $this->render('Default/index.html.twig', []);
+    }
+    public function data() {
         return new JsonResponse([
             [
                 'id' => 1,
                 'author' => 'Chris Colborne',
                 'avatarUrl' => 'http://1.gravatar.com/avatar/13dbc56733c2cc66fbc698cdb07fec12',
                 'title' => 'Bitter Predation',
-                'description' => 'Thirteen thin, round towers …',
+                'description' => 'Thirteen thin, round towers form an almost perfectly squared barrier around this marvelous castle and are connected by big, thin walls made of light pink stone. Rough windows are scattered thinly around the walls in fairly symmetrical patterns, along with overhanging crenelations for archers and artillery.',
             ],
             [
                 'id' => 2,
                 'author' => 'Louanne Perez',
                 'avatarUrl' => 'https://randomuser.me/api/portraits/thumb/women/18.jpg',
                 'title' => 'Strangers of the Ambitious',
-                'description' => "A huge gate with thick metal doors …",
+                'description' => "A huge gate with thick metal doors, a regular bridge and large crenelations offers a warm haven within these cold, isolated landsand it's the only way in, at least to those unfamiliar with the castle and its surroundings.",
             ],
             [
                 'id' => 3,
                 'author' => 'Theodorus Dietvorst',
                 'avatarUrl' => 'https://randomuser.me/api/portraits/thumb/men/49.jpg',
                 'title' => 'Outsiders of the Mysterious',
-                'description' => "Plain fields of a type of grass cover …",
+                'description' => "Plain fields of a type of grass cover most of the fields outside of the castle, adding to the castle's aesthetics. This castle is relatively new, but so far it stood its ground with ease and it'll likely do so for ages to come.",
             ],
         ]);
     }
@@ -98,9 +99,12 @@ class DefaultController extends Controller{
 
 4. For this **Demo**, we will use a **yaml** routing, for this we configure it in [config/routes.yaml](config/routes.yaml).
 
-_[config/routes.yaml](config/routes.yaml)_
+_[config/routes.yaml](./config/routes.yaml)_
 ```yml
 index:
+    path: /
+    controller: App\Controller\DefaultController::index
+data:
     path: /data
     controller: App\Controller\DefaultController::data
 ```
@@ -113,16 +117,12 @@ composer require twig
 
 6. Now, we will create our template with **Twig** in [templates/default/index.html.twig](templates/default/index.html.twig).
 
-_[templates/default/index.html.twig](templates/default/index.html.twig)_
+_[templates/default/index.html.twig](./templates/default/index.html.twig)_
 ```html
 {% extends 'base.html.twig' %}
 {% block body %}
-  <div id="root"></div>
-  <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
 {% endblock %}
 ```
-
-**Note**: This template has classes of **Bootstrap 3**.
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
@@ -134,7 +134,7 @@ composer require symfony/asset
 
 8. Next, we will add to the base template [templates/base.html.twig](templates/base.html.twig), the links to our entries **js** and **css**.
 
-_[templates/base.html.twig](templates/base.html.twig)_
+_[templates/base.html.twig](./templates/base.html.twig)_
 ```html
 <!DOCTYPE html>
 <html>
@@ -200,32 +200,126 @@ This component will generate a file [webpack.config.js](webpack.config.js), and 
 
 1. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
 
-For before, you must add the dependencies that we need when we use **SASS** with the following command.
+For before, you must add the dependencies that we need when we use **React** with the next pair of commands.
 
 ```bash
 npm add --dev babel-preset-react
 npm add react react-dom prop-types
 ```
 
-2. 2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
+2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
 
 _[webpack.config.js](webpack.config.js)_
 ```diff
 var Encore = require('@symfony/webpack-encore');
 
 Encore
-  // the project directory where compiled assets will be stored
-  .setOutputPath('public/build/')
-  // the public path used by the web server to access the previous directory
-  .setPublicPath('/build')
-  .cleanupOutputBeforeBuild()
-  .enableSourceMaps(!Encore.isProduction())
-  .enableVersioning(Encore.isProduction())
-  .addEntry('app', './assets/js/app.js')
-  .enableReactPreset();
+    // the project directory where compiled assets will be stored
+++    .setOutputPath('public/build/')
+    // the public path used by the web server to access the previous directory
+++    .setPublicPath('/build')
+++    .cleanupOutputBeforeBuild()
+++    .enableSourceMaps(!Encore.isProduction())
+    // uncomment to create hashed filenames (e.g. app.abc123.css)
+++    .enableVersioning(Encore.isProduction())
+    // uncomment to define the assets of the project
+    // .addEntry('js/app', './assets/js/app.js')
+++    .addEntry('js/app', './assets/js/app.js')
+    // .addStyleEntry('css/app', './assets/css/app.scss')
+++    .addStyleEntry('css/app', './assets/css/app.scss')
+    // uncomment to enable React Preset
+++    .enableReactPreset();
 
 module.exports = Encore.getWebpackConfig();
 ```
 
-#Set up a demo JSON API
+--------------------------------------------------------------------------------------------
+
+## 4.Create our component React
+
+--------------------------------------------------------------------------------------------
+
+1. We will created our `itemCard` component in [assets/js/Components/ItemCard.js](./assets/js/Components/ItemCard.js).
+
+_[assets/js/Components/ItemCard.js](./assets/js/Components/ItemCard.js)_
+```js
+import React from 'react';
+import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card';
+
+const ItemCard = ({ author, avatarUrl, title, subtitle, style, children }) => (
+  <Card style={style}>
+    <CardHeader title={author} avatar={avatarUrl} />
+    <CardTitle title={title} subtitle={subtitle} />
+    <CardText>{children}</CardText>
+  </Card>
+);
+
+export default ItemCard;
+```
+
+And our [app.js](./assets/js/app.js) in [assets/js/app.js](./assets/js/app.js)
+
+_[assets/js/app.js](./assets/js/app.js)_
+```js
+import '../css/app.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import ItemCard from './Components/ItemCard';
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      entries: []
+    };
+  }
+
+  componentDidMount() {
+    fetch('/data')
+      .then(response => response.json())
+      .then(entries => {
+        this.setState({
+          entries
+        });
+      });
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider>
+        <div style={{ display: 'flex' }}>
+          {this.state.entries.map(
+            ({ id, author, avatarUrl, title, description }) => (
+              <ItemCard
+                key={id}
+                author={author}
+                title={title}
+                avatarUrl={avatarUrl}
+                style={{ flex: 1, margin: 10 }}
+              >
+                {description}
+              </ItemCard>
+            )
+          )}
+        </div>
+      </MuiThemeProvider>
+    );
+  }
+}
+```
+
+2. Now, we will modify our template in [templates/default/index.html.twig](templates/default/index.html.twig).
+
+_[templates/default/index.html.twig](templates/default/index.html.twig)_
+```diff
+{% extends 'base.html.twig' %}
+{% block body %}
+++ <div id="root"></div>
+{% endblock %}
+```
+
+3. Finally, we launch **loader** via `npm run watch`, and the **server** `php bin/console server:run` so we can see the results by clicking [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
