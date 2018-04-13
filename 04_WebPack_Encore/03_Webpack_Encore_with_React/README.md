@@ -323,3 +323,6 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 
 3. Finally, we launch **loader** via `npm run watch`, and the **server** `php bin/console server:run` so we can see the results by clicking [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
+The final result is three React cards that fill the available space on the page.
+
+![Final Result](../../99_Readme_Resources/04_WebPack_Encore/03_Webpack_Encore_with_React/final-result.png)
