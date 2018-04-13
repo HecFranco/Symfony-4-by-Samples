@@ -24,17 +24,20 @@ We will created a little web using **Basic Routing** using the **yml** routing t
 
 ## [02 Controller](/02_Controller/)
 
-## [04 Twig](/03_Twig/)
+## [04 WebPack Encore](/04_WebPack_Encore/)
 
-### [01 Webpack Encore with SASS and Bootstrap 4](/04_Twig/01_Webpack_Encore_with_SASS_and_Bootstrap_4)
+### [01 Webpack Encore with SASS and Bootstrap 4](/04_WebPack_Encore/01_Webpack_Encore_with_SASS_and_Bootstrap_4)
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap 4**.
 
-### [02 Webpack Encore with SASS, Vue and Vue-Bootstrap](/04_Twig/02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap)
+### [02 Webpack Encore with SASS, Vue and Vue-Bootstrap](/04_WebPack_Encore/02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap)
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass**, **Vue** and **VueBootstrap** (Vue + Bootstrap 4).
 
-## [05 Persist Data](/04_Persist_Data/)
+### [03 Webpack Encore with React](/04_WebPack_Encore/03_Webpack_Encore_with_React)
+We will do an installation from the beginning where we will include **Webpack Encore**, along with **React**.
 
-## [06 Security](/05_Security/)
+## [05 Persist Data](/05_Persist_Data/)
+
+## [06 Security](/06_Security/)
 
 ### [01 Registration Form](/06_Security/01_Registration_Form)
 
