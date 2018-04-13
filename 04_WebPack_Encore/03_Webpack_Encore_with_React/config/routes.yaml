@@ -1,0 +1,7 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+data:
+    path: /data
+    controller: App\Controller\DefaultController::data
+

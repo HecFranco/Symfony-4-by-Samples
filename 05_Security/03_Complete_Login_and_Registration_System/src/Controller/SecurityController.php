@@ -90,24 +90,24 @@ class SecurityController extends Controller {
         );
     }
     public function login(Request $request, AuthenticationUtils $authenticationUtils) {
-    /* Initial Charge ************************************************************************************/
-        $em = $this->getDoctrine()->getManager();
-        $userLogged = $this->getUser();
-        $controllerName = "Register" ;        
-    /*****************************************************************************************************/
-    /* Position the Repositories  ************************************************************************/
-        $appConfig_repo = $em->getRepository(AppConfig::class);
-        $user_repo = $em->getRepository(User::class);
-    /*****************************************************************************************************/
-    /* Queries *******************************************************************************************/
-        $appConfig = $appConfig_repo->findAll();
-        $userList = $user_repo->findAll();
-    /*****************************************************************************************************/
-    /* Condition Whitout registered User *****************************************************************/
-        if($userList == null){
-            return $this->redirectToRoute('user_register');
-        }
-    /*****************************************************************************************************/            
+	    /* Initial Charge ************************************************************************************/
+	        $em = $this->getDoctrine()->getManager();
+	        $userLogged = $this->getUser();
+	        $controllerName = "Register" ;        
+	    /*****************************************************************************************************/
+	    /* Position the Repositories  ************************************************************************/
+	        $appConfig_repo = $em->getRepository(AppConfig::class);
+	        $user_repo = $em->getRepository(User::class);
+	    /*****************************************************************************************************/
+	    /* Queries *******************************************************************************************/
+	        $appConfig = $appConfig_repo->findAll();
+	        $userList = $user_repo->findAll();
+	    /*****************************************************************************************************/
+	    /* Condition Whitout registered User *****************************************************************/
+	        if($userList == null){
+	            return $this->redirectToRoute('user_register');
+	        }
+	    /*****************************************************************************************************/            
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user

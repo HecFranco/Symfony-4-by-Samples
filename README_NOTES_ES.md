@@ -155,7 +155,7 @@ A continuación, instalaremos el **componente server** dentro de la carpeta del 
 
 Finalmente lanzamos `php bin/console server:run` para iniciar el servidor.
 
-**Sistema de lanzamiento del servidor alternativo**
+### Sistema de lanzamiento del servidor alternativo
 
 Otra forma de lanzar nuestro proyecto, sin utilizar el **componente server**, es lanzar dentro de la carpeta del proyecto el comando 
 
@@ -252,7 +252,7 @@ Si abrimos la carpeta del proyecto podremos encontrar la siguiente estructura de
     * **composer:** core de Composer.
     * **symfony:** core de Symfony.
 
-**Estructura de Archivos**
+### Estructura de Archivos
 
 <pre>
 	my-project 
@@ -1926,7 +1926,7 @@ En otras palabras, si añades una nueva propiedad a la clase `Product` y ejecuta
 
 Una forma aún mejor para aprovechar esta funcionalidad son las migraciones, que permiten generar estas instrucciones SQL y almacenarlas en unas clases PHP especiales que puedes ejecutar en tu servidor de producción para aplicar los cambios en las bases de datos.
 
---------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------
 

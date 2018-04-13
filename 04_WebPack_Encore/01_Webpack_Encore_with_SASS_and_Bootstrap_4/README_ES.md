@@ -10,7 +10,7 @@ Haremos una instalación desde el principio donde incluiremos **Webpack Encore**
 
 -------------------------------------------------- -------------------------------------
 
-* Crearemos el proyecto a través del comando de la consola: `composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap`
+* Crearemos el proyecto a través del comando de la consola: `composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap`
 
 ---------------------------------------------------------------------------------------
 
@@ -40,13 +40,13 @@ Haremos una instalación desde el principio donde incluiremos **Webpack Encore**
 1. Creamos nuestro proyecto usando los comandos de la consola: 
 
 ```bash
-composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap
+composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
 2. En el siguiente paso, accederemos a la carpeta del proyecto usando:
 
 ```bash
-cd 03_Webpack_Encore_with_SASS_and_Bootstrap
+cd 01_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
 3. Crearemos el **Controlador**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), que gestionará la vista con el siguiente contenido.

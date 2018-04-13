@@ -1,4 +1,4 @@
-# Purpose of the Demo - 04 Webpack Encore with SASS Vue and Bootstrap-Vue
+# Purpose of the Demo - 02 Webpack Encore with SASS Vue and Bootstrap-Vue
 
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass**, **Vue** and **VueBootstrap** (Vue + Bootstrap 4).
 
@@ -10,7 +10,7 @@ We will do an installation from the beginning where we will include **Webpack En
 
 -------------------------------------------------- -------------------------------------
 
-* We will create the project through the command of the console:`composer create-project symfony/skeleton 04_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap`
+* We will create the project through the command of the console:`composer create-project symfony/skeleton 02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap`
 
 ---------------------------------------------------------------------------------------
 
@@ -41,13 +41,13 @@ We will do an installation from the beginning where we will include **Webpack En
 1. We create our project using the commands of the console: 
 
 ```bash
-composer create-project symfony/skeleton 04_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap
+composer create-project symfony/skeleton 02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap
 ```
 
 2. In the next step, we will access the project folder using:
 
 ```bash
-cd 04_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap
+cd 02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap
 ```
 
 3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.

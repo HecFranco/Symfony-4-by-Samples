@@ -10,7 +10,7 @@ We will do an installation from the beginning where we will include **Webpack En
 
 -------------------------------------------------- -------------------------------------
 
-* We will create the project through the command of the console:`composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap`
+* We will create the project through the command of the console:`composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap`
 
 ---------------------------------------------------------------------------------------
 
@@ -40,13 +40,13 @@ We will do an installation from the beginning where we will include **Webpack En
 1. We create our project using the commands of the console: 
 
 ```bash
-composer create-project symfony/skeleton 03_Webpack_Encore_with_SASS_and_Bootstrap
+composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
 2. In the next step, we will access the project folder using:
 
 ```bash
-cd 03_Webpack_Encore_with_SASS_and_Bootstrap
+cd 01_Webpack_Encore_with_SASS_and_Bootstrap
 ```
 
 3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
@@ -151,7 +151,7 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 {% endblock %}
 ```
 
-**Note**: This template has classes of **Bootstrap 3**.
+**Note**: This template has classes of **Bootstrap 4**.
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
