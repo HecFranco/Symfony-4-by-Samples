@@ -1,0 +1,6 @@
+default:
+    path: /
+    controller: App\Controller\DefaultController::index
+api_user:
+    path: /api/user
+    controller: App\Controller\ApiUsersController::SetUser

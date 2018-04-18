@@ -26,7 +26,7 @@ We will created a little web using **Basic Routing** using the **yml** routing t
 
 ## [04 WebPack Encore](/04_WebPack_Encore/)
 
-### [01 Webpack Encore with SASS and Bootstrap 4](/04_WebPack_Encore/01_Webpack_Encore_with_SASS_and_Bootstrap_4)
+### [01 Webpack Encore with SASS and Bootstrap SASS](/04_WebPack_Encore/01_Webpack_Encore_with_SASS_and_Bootstrap_SASS)
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap 4**.
 
 ### [02 Webpack Encore with SASS, Vue and Vue-Bootstrap](/04_WebPack_Encore/02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap)
@@ -39,6 +39,10 @@ We will do an installation from the beginning where we will include **Webpack En
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **React**, using **SASS**, **TypeScript** and **Bootstrap**.
 
 ## [05 Persist Data](/05_Persist_Data/)
+
+## [06 Security](/06_Form/)
+
+### [03 Form Using Webpack Encore with React, TypeScript, Bootstrap and SASS](/07_Security/03_Form_Using_Webpack_Encore_with_React_SASS_TypeScript_and_Bootstrap)
 
 ## [07 Security](/07_Security/)
 

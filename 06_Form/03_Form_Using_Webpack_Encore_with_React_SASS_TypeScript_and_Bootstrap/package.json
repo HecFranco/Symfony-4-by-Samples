@@ -1,0 +1,27 @@
+{
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.17.1",
+        "ts-loader": "^4.2.0",
+        "typescript": "^2.8.1"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production"
+    },
+    "dependencies": {
+        "babel-preset-react": "^6.24.1",
+        "bootstrap": "^4.1.0",
+        "jquery": "^3.3.1",
+        "material-ui": "^0.20.0",
+        "node-sass": "^4.8.3",
+        "popper.js": "^1.14.3",
+        "prop-types": "^15.6.1",
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
+        "sass-loader": "^7.0.1"
+    }
+}
