@@ -1,4 +1,4 @@
-# Purpose of the Demo - 03 Webpack Encore with SASS and Bootstrap
+# Purpose of the Demo - 01 Webpack Encore with SASS and Bootstrap-SASS
 
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass** and **Bootstrap 4**.
 
@@ -8,9 +8,9 @@ We will do an installation from the beginning where we will include **Webpack En
 3. [Installation and Configuration of **SASS**](#3installation-and-configuration-of-sass)
 4. [Installation and Configuration of **Bootstrap**](#4installation-and-configuration-of-bootstrap)
 
--------------------------------------------------- -------------------------------------
+---------------------------------------------------------------------------------------
 
-* We will create the project through the command of the console:`composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap`
+* We will create the project through the command of the console:`composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap-SASS`
 
 ---------------------------------------------------------------------------------------
 
@@ -24,12 +24,19 @@ We will do an installation from the beginning where we will include **Webpack En
 # Summary of the components of the Webpack to use
 
 * Npm.js Component, `npm install @symfony/webpack-encore --save-dev`
-* Sass-loader Component, `npm add sass-loader --dev`
-* Node Sass Component, `npm add node-sass --dev`
-* JQuery Component, `npm add jquery`
-* Bootstrap-Sass Component, `npm add bootstrap-sass --dev`
+* Sass-loader Component, `npm install sass-loader --dev`
+* Node Sass Component, `npm install node-sass --dev`
+* JQuery Component, `npm install jquery`
+* Bootstrap-Sass Component, `npm install bootstrap-sass --dev`
 
-# 03 Webpack Encore with SASS and Bootstrap
+---------------------------------------------------------------------------------------
+
+Source: [https://www.acceseo.com/blog/proyecto-symfony-4-webpack-encore-bootstrap-saas.html](https://www.acceseo.com/blog/proyecto-symfony-4-webpack-encore-bootstrap-saas.html)
+
+---------------------------------------------------------------------------------------
+
+
+# 01 Webpack Encore with SASS and Bootstrap 4
 
 --------------------------------------------------------------------------------------------
 
@@ -40,13 +47,13 @@ We will do an installation from the beginning where we will include **Webpack En
 1. We create our project using the commands of the console: 
 
 ```bash
-composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap
+composer create-project symfony/skeleton 01_Webpack_Encore_with_SASS_and_Bootstrap-SASS
 ```
 
 2. In the next step, we will access the project folder using:
 
 ```bash
-cd 01_Webpack_Encore_with_SASS_and_Bootstrap
+cd 01_Webpack_Encore_with_SASS_and_Bootstrap-SASS
 ```
 
 3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
@@ -145,13 +152,13 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
 </nav>
 <section>
     <h1 class="text-center" data-toggle="tooltip" data-placement="bottom" title="js de bootstrap funcionando :)" >
-        Hello, we are using <s>Sass</s> in our project!
+        Hello, we are using <s>Sass</s> and <s>Bootstrap-SASS<s/> in our project!
     </h1>
 </section>
 {% endblock %}
 ```
 
-**Note**: This template has classes of **Bootstrap 4**.
+**Note**: This template has classes of **Bootstrap 3**.
 
 (Source: [https://symfony.com/doc/current/page_creation.html#rendering-a-template](https://symfony.com/doc/current/page_creation.html#rendering-a-template))
 
@@ -205,6 +212,8 @@ In order to see the results, we will click on [http://127.0.0.1:8000](http://127
 
 --------------------------------------------------------------------------------------------
 
+( Source: [https://symfony.com/doc/current/frontend/encore/installation.html](https://symfony.com/doc/current/frontend/encore/installation.html) )
+
 1. We are using **Symfony Flex** for the project, so we will initialize our project for **Webpack Encore** through:
 
 ```bash
@@ -227,12 +236,14 @@ This component will generate a file [webpack.config.js](webpack.config.js), and 
 
 --------------------------------------------------------------------------------------------
 
+( Source: [https://symfony.com/doc/current/frontend/encore/css-preprocessors.html](https://symfony.com/doc/current/frontend/encore/css-preprocessors.html) )
+
 1. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
 
 For before, you must add the dependencies that we need when we use **SASS** with the following command.
 
 ```bash
-npm add sass-loader node-sass --dev
+npm install sass-loader node-sass --dev
 ```
 
 2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
@@ -246,7 +257,7 @@ _[webpack.config.js](webpack.config.js)_
 ++   .addStyleEntry('css/app', './assets/css/app.scss')
     // uncomment if you use Sass/SCSS files
     // .enableSassLoader()
-++    .enableSassLoader()
+++   .enableSassLoader()
 ```
 
 To activate **Sass-Loader**, which is the **SASS Reader**, and indicate the location of the inputs and outputs of the components **js** and **css**. Indicating `.addEntry ('js/app', './assets/js/app.js')` for the compilation of **js** and `.addStyleEntry (' css/app ',' ./assets/css/app.scss') `for the **css**.
@@ -293,13 +304,13 @@ npm run watch
 1. To import **Bootstrap** in our project we will only have to execute.
 
 ```bash
-npm add jquery
+npm install jquery
 ```
 
 to install **Jquery**, and
 
 ```bash
-npm add bootstrap-sass --dev
+npm install bootstrap-sass --dev
 ```
 
 to install **Bootstrap-Sass** in its version 3.
@@ -307,7 +318,7 @@ to install **Bootstrap-Sass** in its version 3.
 2. Additionally in this demo we will install the library **popper.js** using the command:
 
 ```bash
-npm add popper.js
+npm install popper.js
 ```
 
 with it we will generate the windows with floating information.

@@ -25,8 +25,8 @@ We will do an installation from the beginning where we will include **Webpack En
 # Summary of the components of the Webpack to use
 
 * Npm.js Component, `npm install @symfony/webpack-encore --save-dev`
-* Sass-loader Component, `npm add sass-loader --dev`
-* Node Sass Component, `npm add node-sass --dev`
+* Sass-loader Component, `npm install sass-loader --dev`
+* Node Sass Component, `npm install node-sass --dev`
 * Vue plugin, `npm install --save vue`
 * Bootstrap-Vue, `npm i bootstrap-vue`
 
@@ -95,7 +95,7 @@ _[templates/default/index.html.twig](templates/default/index.html.twig)_
                     <div class="card border-none">
                         <div class="card-body">
                             <div class="mt-2 text-center">
-                                <h1>04 Webpack Encore <s>with</s> SASS Vue and VueBootstrap</h1>
+                                <h1>02 Webpack Encore <s>with</s> SASS Vue and VueBootstrap</h1>
                             </div>
                             <div class="mt-4">
                                 <form class="form-signin">
@@ -176,6 +176,8 @@ In order to see the results, we will click on [http://127.0.0.1:8000](http://127
 
 --------------------------------------------------------------------------------------------
 
+( Source: [https://symfony.com/doc/current/frontend/encore/installation.html](https://symfony.com/doc/current/frontend/encore/installation.html) )
+
 1. We are using **Symfony Flex** for the project, so we will initialize our project for **Webpack Encore** through:
 
 ```bash
@@ -198,12 +200,14 @@ This component will generate a file [webpack.config.js](webpack.config.js), and 
 
 --------------------------------------------------------------------------------------------
 
+( Source: [https://symfony.com/doc/current/frontend/encore/css-preprocessors.html](https://symfony.com/doc/current/frontend/encore/css-preprocessors.html) )
+
 1. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
 
 For before, you must add the dependencies that we need when we use **SASS** with the following command.
 
 ```bash
-npm add sass-loader node-sass --dev
+npm install sass-loader node-sass --dev
 ```
 
 2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
@@ -261,6 +265,8 @@ npm run watch
 
 --------------------------------------------------------------------------------------------
 
+( Source: [https://symfony.com/doc/current/frontend/encore/vuejs.html](https://symfony.com/doc/current/frontend/encore/vuejs.html) )
+ 
 * First it is necessary to install **Vue**, then add the **Bootstrap-Vue** (Bootstrap-4) plugin.
 
 ```bash

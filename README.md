@@ -32,8 +32,11 @@ We will do an installation from the beginning where we will include **Webpack En
 ### [02 Webpack Encore with SASS, Vue and Vue-Bootstrap](/04_WebPack_Encore/02_Webpack_Encore_with_SASS_Vue_and_Vue_Bootstrap)
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass**, **Vue** and **VueBootstrap** (Vue + Bootstrap 4).
 
-### [03 Webpack Encore with React](/04_WebPack_Encore/03_Webpack_Encore_with_React)
-We will do an installation from the beginning where we will include **Webpack Encore**, along with **React**.
+### [03 Webpack Encore with React and Sass](/04_WebPack_Encore/03_Webpack_Encore_with_React_and_SASS)
+We will do an installation from the beginning where we will include **Webpack Encore**, along with **React** and **SASS**.
+
+### [04 Webpack Encore with React, Sass, TypeScript and Bootstrap](/04_WebPack_Encore/04_Webpack_Encore_with_React_SASS_TypeScript_and_Bootstrap)
+We will do an installation from the beginning where we will include **Webpack Encore**, along with **React**, using **SASS**, **TypeScript** and **Bootstrap**.
 
 ## [05 Persist Data](/05_Persist_Data/)
 

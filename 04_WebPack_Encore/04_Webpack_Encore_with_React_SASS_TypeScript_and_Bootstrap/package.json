@@ -2,9 +2,13 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.17.1",
         "babel-preset-react": "^6.24.1",
+        "node-sass": "^4.8.3",
         "prop-types": "^15.6.1",
         "react": "^16.3.1",
-        "react-dom": "^16.3.1"
+        "react-dom": "^16.3.1",
+        "sass-loader": "^7.0.1",
+        "ts-loader": "^4.2.0",
+        "typescript": "^2.8.1"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -15,6 +19,8 @@
         "build": "encore production"
     },
     "dependencies": {
+        "bootstrap": "^4.1.0",
+        "jquery": "^3.3.1",
         "material-ui": "^0.20.0"
     }
 }

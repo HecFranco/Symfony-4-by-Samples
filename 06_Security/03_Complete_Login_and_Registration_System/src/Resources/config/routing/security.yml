@@ -7,8 +7,3 @@ user_login:
 user_logout:
     path: /logout/
     controller: App\Controller\SecurityController::logout
-
-
-test:
-    path: /test/
-    controller: App\Controller\SecurityController::test

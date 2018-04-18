@@ -6,7 +6,8 @@ namespace App\Controller;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\HttpFoundation\Request;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;     // Allow Router
-    use Symfony\Component\HttpFoundation\Response;                  // Allows you to execute the Response method    
+    use Symfony\Component\HttpFoundation\Response;                  // Allows you to execute the Response method
+    use Symfony\Component\HttpFoundation\JsonResponse;
     // Neccesary to use UserPasswordEncoderInterface into the function login
     use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;  
     // Neccesary to use AuthenticationUtils into the function login 
@@ -15,6 +16,7 @@ namespace App\Controller;
     use Symfony\Component\HttpFoundation\Session\Session;
 /* Forms *****************************************************************************************************/
     use App\Form\UserType;
+    use App\Form\AppConfigType;
 /*************************************************************************************************************/    
 /* Entity ****************************************************************************************************/    
     use App\Entity\User;
@@ -58,10 +60,12 @@ class SecurityController extends Controller {
         /*****************************************************************************************************/               
         // 1) build the form
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form_register = $this->createForm(UserType::class, $user);
+        $registerAppConfig = new AppConfig();
+        $form_register_config = $this->createForm(AppConfigType::class, $registerAppConfig);
         // 2) handle the submit (will only happen on POST)
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $form_register->handleRequest($request);
+        if ($form_register->isSubmitted() && $form_register->isValid()) {
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
@@ -79,10 +83,12 @@ class SecurityController extends Controller {
             ));
             return $this->redirectToRoute('user_login');
         }
+
         return $this->render(
             'security/register.html.twig',
             array(
-                'form' => $form->createView(),
+                'form_register' => $form_register->createView(),
+                'form_register_config' => $form_register_config->createView(),
                 'appConfig'=>$appConfig,
                 'controllerName'=>$controllerName,
                 'appConfigOptions_repo'=>$appConfigOptions_repo->findAll()

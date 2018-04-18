@@ -1,16 +1,17 @@
 # Purpose of the Demo - 03 Webpack Encore with React
 
-We will do an installation from the beginning where we will include **Webpack Encore**, along with **Sass**, **Vue** and **VueBootstrap** (Vue + Bootstrap 4).
+We will do an installation from the beginning where we will include **Webpack Encore**, along with **React** and **Sass**.
 
 # Phases of the Demo
 1. [Project creation and ready](#1project-creation-and-ready)
 2. [Installation of **WebPack Encore**](#2installation-of-webpack-encore)
 3. [Installation and Configuration of **SASS**](#3installation-and-configuration-of-sass)
-4. [Installation and configuration of **Bootstrap-Vue**](#4installation-and-configuration-of-bootstrap-vue)
+4. [Installation and configuration of **React**](#4installation-and-configuration-of-react)
+5. [Create our component **React**](#5create-our-component-react)
 
 -------------------------------------------------- -------------------------------------
 
-* We will create the project through the command of the console:`composer create-project symfony/skeleton 03_Webpack_Encore_with_React`
+* We will create the project through the command of the console:`composer create-project symfony/skeleton 03_Webpack_Encore_with_React_and_SASS`
 
 ---------------------------------------------------------------------------------------
 
@@ -25,14 +26,16 @@ We will do an installation from the beginning where we will include **Webpack En
 # Summary of the components of the Webpack to use
 
 * Npm.js Component, `npm install @symfony/webpack-encore --save-dev`
-* Babel-preset-react Component, `npm add --dev babel-preset-react`
-* React, React-Dom and Prop-types Component, `npm add react react-dom prop-types`
+* Sass-loader Component, `npm install sass-loader --dev`
+* Node Sass Component, `npm install node-sass --dev`
+* Babel-preset-react Component, `npm install --dev babel-preset-react`
+* React, React-Dom and Prop-types Component, `npm install react react-dom prop-types`
 
 # Source
 
 * [https://www.modernjsforphpdevs.com/react-symfony-4-starter-repo/](https://www.modernjsforphpdevs.com/react-symfony-4-starter-repo/)
 
-# 04 Webpack Encore with SASS Vue and Bootstrap-Vue
+# 03 Webpack Encore with React and SASS
 
 --------------------------------------------------------------------------------------------
 
@@ -43,13 +46,13 @@ We will do an installation from the beginning where we will include **Webpack En
 1. We create our project using the commands of the console: 
 
 ```bash
-composer create-project symfony/skeleton 03_Webpack_Encore_with_React
+composer create-project symfony/skeleton 03_Webpack_Encore_with_React_and_SASS
 ```
 
 2. In the next step, we will access the project folder using:
 
 ```bash
-cd 03_Webpack_Encore_with_React
+cd 03_Webpack_Encore_with_React_and_SASS
 ```
 
 3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
@@ -176,6 +179,8 @@ In order to see the results, we will click on [http://127.0.0.1:8000](http://127
 
 --------------------------------------------------------------------------------------------
 
+( Source: [https://symfony.com/doc/current/frontend/encore/installation.html](https://symfony.com/doc/current/frontend/encore/installation.html) )
+
 1. We are using **Symfony Flex** for the project, so we will initialize our project for **Webpack Encore** through:
 
 ```bash
@@ -194,17 +199,84 @@ This component will generate a file [webpack.config.js](webpack.config.js), and 
 
 --------------------------------------------------------------------------------------------
 
-## 3.Installation and Configuration of **React**
+## 3.Installation and Configuration of **SASS**
 
 --------------------------------------------------------------------------------------------
+
+( Source: [https://symfony.com/doc/current/frontend/encore/css-preprocessors.html](https://symfony.com/doc/current/frontend/encore/css-preprocessors.html) )
+
+1. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
+
+For before, you must add the dependencies that we need when we use **SASS** with the following command.
+
+```bash
+npm install sass-loader node-sass --dev
+```
+
+2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
+
+_[webpack.config.js](webpack.config.js)_
+```diff
+    // uncomment to define the assets of the project
+    // .addEntry('js/app', './assets/js/app.js')
+++   .addEntry('js/app', './assets/js/app.js')
+    // .addStyleEntry('css/app', './assets/css/app.scss')
+++   .addStyleEntry('css/app', './assets/css/app.scss')
+    // uncomment if you use Sass/SCSS files
+    // .enableSassLoader()
+++    .enableSassLoader()
+```
+
+To activate **Sass-Loader**, which is the **SASS Reader**, and indicate the location of the inputs and outputs of the components **js** and **css**. Indicating `.addEntry ('js/app', './assets/js/app.js')` for the compilation of **js** and `.addStyleEntry (' css/app ',' ./assets/css/app.scss') `for the **css**.
+
+3. In the next step, we will create our stylesheet [assets/css/app.scss](assets/css/app.scss) using **SASS**. This sheet will be transpiled to **CSS**.
+
+_[assets/css/app.scss](assets/css/app.scss)_
+```scss
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+```
+
+4. Next, we add this line `import '../css/app.scss';` in [assets/js/app.js](assets/js/app.js) to be able to compile **Sass** in **css**.
+
+_[assets/js/app.js](assets/js/app.js)_
+```js
+import '../css/app.scss';
+```
+
+5. Now, we can access [http://127.0.0.1:8000](http://127.0.0.1:8000) again expecting to see our changes in the template, but we will find two **404 errors** corresponding to the files [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) that we just included in our base template.
+
+To correct the errors, we must execute the following command that will generate the files from those created in the folders  [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js).
+
+```bash
+npm run watch
+```
+
+**Note:** If we launch a `npm run dev -watch` thread, the system will recognize the changes we make to the files and will regenerate the files that are linked in our template so that the changes are available.
+
+6. Now we can launch the server again using `php bin/console server:run` and access [http://127.0.0.1:8000](http://127.0.0.1:8000) to see the changes referred to in [assets/css/app.scss](assets/css/app.scss).
+
+--------------------------------------------------------------------------------------------
+
+## 4.Installation and Configuration of **React**
+
+--------------------------------------------------------------------------------------------
+
+( Source: [https://symfony.com/doc/current/frontend/encore/reactjs.html](https://symfony.com/doc/current/frontend/encore/reactjs.html) )
 
 1. After configuring the compilation process in **Webpack**, so that the system recognizes the result of the compilation process of the static files.
 
 For before, you must add the dependencies that we need when we use **React** with the next pair of commands.
 
 ```bash
-npm add --dev babel-preset-react
-npm add react react-dom prop-types
+npm install --dev babel-preset-react
+npm install react react-dom prop-types
 ```
 
 2. Next we will configure the file [webpack.config.js](webpack.config.js) with the following directives.
@@ -224,9 +296,12 @@ Encore
 ++    .enableVersioning(Encore.isProduction())
     // uncomment to define the assets of the project
     // .addEntry('js/app', './assets/js/app.js')
-++    .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/app', './assets/js/app.js')
     // .addStyleEntry('css/app', './assets/css/app.scss')
-++    .addStyleEntry('css/app', './assets/css/app.scss')
+    .addStyleEntry('css/app', './assets/css/app.scss')
+    // uncomment if you use Sass/SCSS files
+    // .enableSassLoader()
+    .enableSassLoader()
     // uncomment to enable React Preset
 ++    .enableReactPreset();
 
@@ -235,7 +310,7 @@ module.exports = Encore.getWebpackConfig();
 
 --------------------------------------------------------------------------------------------
 
-## 4.Create our component React
+## 5.Create our component React
 
 --------------------------------------------------------------------------------------------
 
@@ -261,7 +336,7 @@ And our [app.js](./assets/js/app.js) in [assets/js/app.js](./assets/js/app.js)
 
 _[assets/js/app.js](./assets/js/app.js)_
 ```js
-import '../css/app.css';
+import '../css/app.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -309,6 +384,8 @@ class App extends React.Component {
     );
   }
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 2. Now, we will modify our template in [templates/default/index.html.twig](templates/default/index.html.twig).

@@ -1,0 +1,3 @@
+test:
+    path: /test/
+    controller: App\Controller\SecurityController::test
