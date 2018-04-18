@@ -40,18 +40,18 @@ We will do an installation from the beginning where we will include **Webpack En
 
 ## [05 Persist Data](/05_Persist_Data/)
 
-## [06 Security](/06_Security/)
+## [07 Security](/07_Security/)
 
-### [01 Registration Form](/06_Security/01_Registration_Form)
+### [01 Registration Form](/07_Security/01_Registration_Form)
 
 We will created a **Registration Form** that requires a username, email and password. It will also allow to add a checkbox of required for the registration.
 
 The password will be coded and together with the rest of the collected data stored in the database.
 
-### [02 Login Form](/06_Security/02_Login_Form)
+### [02 Login Form](/07_Security/02_Login_Form)
 We will created a **Login Form** that requires a username or email and password. 
 
-### [03 Complete Login and Registration System](/06_Security/03_Complete_Login_and_Registration_System)
+### [03 Complete Login and Registration System](/07_Security/03_Complete_Login_and_Registration_System)
 
 We will create a **Complete Login and Registration System** that requires a username, email and password. It will also allow you to add a check box required for the record.
 

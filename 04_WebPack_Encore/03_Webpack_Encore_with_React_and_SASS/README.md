@@ -1,4 +1,4 @@
-# Purpose of the Demo - 03 Webpack Encore with React
+# Purpose of the Demo - 03 Webpack Encore with React and SASS
 
 We will do an installation from the beginning where we will include **Webpack Encore**, along with **React** and **Sass**.
 
@@ -53,6 +53,12 @@ composer create-project symfony/skeleton 03_Webpack_Encore_with_React_and_SASS
 
 ```bash
 cd 03_Webpack_Encore_with_React_and_SASS
+```
+
+Now, we will installed **Profiler Component** using the command.
+
+```bash
+composer require --dev profiler
 ```
 
 3. We will create the **Controller**, [src/Controller/DefaultController.php](src/Controller/DefaultController.php), which will manage the view with the following content.
@@ -144,17 +150,19 @@ _[templates/base.html.twig](./templates/base.html.twig)_
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# add next line .............................................................................. #}
-            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
-        {# add add previous line line ................................................................. #}
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {# add next line .............................................................................. #}
+                <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+            {# add add previous line line ................................................................. #}
+        {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
-        {# add next line .............................................................................. #}
-            <script src="{{ asset('build/app.js') }}"></script>
-        {# add add previous line line ................................................................. #}            
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {# add next line .............................................................................. #}
+                <script src="{{ asset('build/js/app.js') }}"></script>
+            {# add add previous line line ................................................................. #}  
+        {% endblock %}
     </body>
 </html>
 ```
@@ -217,21 +225,37 @@ npm install sass-loader node-sass --dev
 
 _[webpack.config.js](webpack.config.js)_
 ```diff
+var Encore = require('@symfony/webpack-encore');
+
+Encore
+    // the project directory where compiled assets will be stored
+    .setOutputPath('public/build/')
+    // the public path used by the web server to access the previous directory
+    .setPublicPath('/build')
+    .cleanupOutputBeforeBuild()
+    .enableSourceMaps(!Encore.isProduction())
+    // uncomment to create hashed filenames (e.g. app.abc123.css)
+    // .enableVersioning(Encore.isProduction())
+
     // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
-++   .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
-++   .addStyleEntry('css/app', './assets/css/app.scss')
+--  // .addEntry('js/app', './assets/js/app.js')
+++  .addEntry('js/app', './assets/js/app.js')
+--  // .addStyleEntry('css/app', './assets/css/app.scss')
+++  .addStyleEntry('css/app', './assets/scss/app.scss')
     // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
-++    .enableSassLoader()
+--  // .enableSassLoader()
+++  .enableSassLoader()
+    // uncomment for legacy applications that require $/jQuery as a global variable
+    // .autoProvidejQuery()
+;
+module.exports = Encore.getWebpackConfig();
 ```
 
-To activate **Sass-Loader**, which is the **SASS Reader**, and indicate the location of the inputs and outputs of the components **js** and **css**. Indicating `.addEntry ('js/app', './assets/js/app.js')` for the compilation of **js** and `.addStyleEntry (' css/app ',' ./assets/css/app.scss') `for the **css**.
+To activate **Sass-Loader**, which is the **SASS Reader**, and indicate the location of the inputs and outputs of the components **js** and **css**. Indicating `.addEntry ('js/app', './assets/js/app.js')` for the compilation of **js** and `.addStyleEntry (' css/app ',' ./assets/scss/app.scss') `for the **css**.
 
-3. In the next step, we will create our stylesheet [assets/css/app.scss](assets/css/app.scss) using **SASS**. This sheet will be transpiled to **CSS**.
+3. In the next step, we will create our stylesheet [assets/scss/app.scss](assets/scss/app.scss) using **SASS**. This sheet will be transpiled to **CSS**.
 
-_[assets/css/app.scss](assets/css/app.scss)_
+_[assets/scss/app.scss](assets/scss/app.scss)_
 ```scss
 html {
   font-family: Arial, Helvetica, sans-serif;
@@ -243,11 +267,11 @@ html {
 }
 ```
 
-4. Next, we add this line `import '../css/app.scss';` in [assets/js/app.js](assets/js/app.js) to be able to compile **Sass** in **css**.
+4. Next, we add this line `import '../scss/app.scss';` in [assets/js/app.js](assets/js/app.js) to be able to compile **Sass** in **css**.
 
 _[assets/js/app.js](assets/js/app.js)_
 ```js
-import '../css/app.scss';
+import '../scss/app.scss';
 ```
 
 5. Now, we can access [http://127.0.0.1:8000](http://127.0.0.1:8000) again expecting to see our changes in the template, but we will find two **404 errors** corresponding to the files [assets/css/app.css](assets/css/app.css) and [assets/js/app.js](assets/js/app.js) that we just included in our base template.
@@ -287,24 +311,25 @@ var Encore = require('@symfony/webpack-encore');
 
 Encore
     // the project directory where compiled assets will be stored
-++    .setOutputPath('public/build/')
+    .setOutputPath('public/build/')
     // the public path used by the web server to access the previous directory
-++    .setPublicPath('/build')
-++    .cleanupOutputBeforeBuild()
-++    .enableSourceMaps(!Encore.isProduction())
+    .setPublicPath('/build')
+    .cleanupOutputBeforeBuild()
+    .enableSourceMaps(!Encore.isProduction())
     // uncomment to create hashed filenames (e.g. app.abc123.css)
+--  // .enableVersioning(Encore.isProduction())    
 ++    .enableVersioning(Encore.isProduction())
+
     // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
     .addStyleEntry('css/app', './assets/css/app.scss')
+
     // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
     .enableSassLoader()
     // uncomment to enable React Preset
-++    .enableReactPreset();
-
+    // .autoProvidejQuery()    
+++  .enableReactPreset()
+;
 module.exports = Encore.getWebpackConfig();
 ```
 
@@ -315,6 +340,13 @@ module.exports = Encore.getWebpackConfig();
 --------------------------------------------------------------------------------------------
 
 1. We will created our `itemCard` component in [assets/js/Components/ItemCard.js](./assets/js/Components/ItemCard.js).
+
+
+But first, we must install the material of the component that we will use within the React component.
+
+```bash
+npm install --save material-ui
+```
 
 _[assets/js/Components/ItemCard.js](./assets/js/Components/ItemCard.js)_
 ```js
@@ -336,7 +368,7 @@ And our [app.js](./assets/js/app.js) in [assets/js/app.js](./assets/js/app.js)
 
 _[assets/js/app.js](./assets/js/app.js)_
 ```js
-import '../css/app.scss';
+import '../scss/app.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

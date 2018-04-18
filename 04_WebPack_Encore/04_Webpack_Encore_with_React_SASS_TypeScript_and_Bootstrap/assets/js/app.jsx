@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import ItemCard from './Components/ItemCard';
+import ItemCard from './Components/ItemCard.jsx';
 
 class App extends React.Component {
   constructor() {

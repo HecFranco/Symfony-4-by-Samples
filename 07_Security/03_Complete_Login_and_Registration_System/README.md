@@ -27,7 +27,7 @@ The system will differentiate between **First User** and the rest, allowing you 
 * Debug-Bundle Component, `composer require debug --dev`
 (Source: [https://symfony.com/doc/current/components/debug.html](https://symfony.com/doc/current/components/debug.html))
 * Twig Component, `composer require twig`
-* Doctrine Component, `composer require doctrine maker`
+* Doctrine Component, `composer require doctrine/doctrine-bundle`
 * Form Componente, `composer require form`
 * Security Component, `composer require security`
 * Validator Component, `composer require validator`
@@ -84,7 +84,7 @@ php bin/console server:run
 1. We will installed **Doctrine Component** to manage the database of project using the command:
 
 ```bash
-composer require doctrine maker
+composer require doctrine/doctrine-bundle
 ```
 
 2. To configurate the database connection, we will modified the environment variable called `DATABASE_URL`. For then, we you can find and customize this inside [.env](.env):
