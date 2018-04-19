@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-04-2018 a las 06:56:12
+-- Tiempo de generación: 19-04-2018 a las 15:25:23
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.1.9
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `app_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `option` int(11) DEFAULT NULL,
   `name` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `option` (`option`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -41,11 +42,11 @@ CREATE TABLE IF NOT EXISTS `app_config` (
 -- Volcado de datos para la tabla `app_config`
 --
 
-INSERT INTO `app_config` (`id`, `option`, `name`) VALUES
-(1, 1, 'app_name'),
-(2, 2, 'keep_me_logged_in'),
-(3, 5, 'register_new_user'),
-(4, 7, 'first_user');
+INSERT INTO `app_config` (`id`, `option`, `name`, `type`) VALUES
+(1, 1, 'app_name', 'text'),
+(2, 2, 'keep_me_logged_in', 'options'),
+(3, 5, 'register_new_user', 'options'),
+(4, 7, 'first_user', 'hidden');
 
 -- --------------------------------------------------------
 

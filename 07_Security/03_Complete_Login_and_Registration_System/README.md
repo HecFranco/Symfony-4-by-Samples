@@ -18,23 +18,24 @@ The system will differentiate between **First User** and the rest, allowing you 
 
 # Summary Symfony component`s to use
 
-* Server Component, `composer require server --dev`
-* Profiler Component, `composer require --dev profiler`
-* Apache-Pack Component, `composer require symfony/apache-pack`
-(Source: [https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules](https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules))
-* Var-dumper Component, `composer require var-dumper`
-(Source: [https://symfony.com/doc/current/components/var_dumper.html](https://symfony.com/doc/current/components/var_dumper.html))
-* Debug-Bundle Component, `composer require debug --dev`
-(Source: [https://symfony.com/doc/current/components/debug.html](https://symfony.com/doc/current/components/debug.html))
-* Twig Component, `composer require twig`
-* Doctrine Component, `composer require doctrine/doctrine-bundle`
-* Form Componente, `composer require form`
-* Security Component, `composer require security`
-* Validator Component, `composer require validator`
-* Mailer Component, `composer require mailer`
-`composer require debug --dev`
-* Check Requirements for Running Symfony Component, `composer require symfony/requirements-checker` 
- (Source: [https://symfony.com/doc/current/reference/requirements.html](https://symfony.com/doc/current/reference/requirements.html))
+* [Server Component](https://symfony.com/doc/current/setup.html), `composer require server --dev`
+* [Profiler Component](https://symfony.com/doc/current/profiler.html), `composer require --dev profiler`
+* [Apache-Pack Component](https://symfony.com/doc/current/setup/web_server_configuration.html#adding-rewrite-rules), `composer require symfony/apache-pack`
+* [Var-dumper Component](https://symfony.com/doc/current/components/var_dumper.html), `composer require var-dumper`
+* [Debug-Bundle Component](https://symfony.com/doc/current/components/debug.html), `composer require debug --dev`
+
+* [Twig Component](https://twig.symfony.com/doc/2.x/), `composer require twig`
+* [Twig Extension Component](https://symfony.com/doc/current/templating/twig_extension.html), `composer require twig/extensions`
+* [Asset component](https://symfony.com/doc/current/components/asset.html), `composer require symfony/asset`
+
+* [Doctrine Component](https://symfony.com/doc/current/bundles/DoctrineBundle/installation.html), `composer require doctrine/doctrine-bundle`
+* [Security Component](https://symfony.com/doc/current/components/security.html), `composer require security`
+* [Validator Component](https://symfony.com/doc/current/components/validator.html), `composer require validator`
+* [Form Componente](https://symfony.com/doc/current/forms.html), `composer require form`
+
+* [Mailer Component](https://symfony.com/doc/current/email.html), `composer require mailer`
+* [Check Requirements for Running Symfony Component](https://symfony.com/doc/current/reference/requirements.html), `composer require symfony/requirements-checker` 
+
 
 # Summary Console command`s to be used
 

@@ -22,14 +22,19 @@ class AppConfig {
     private $id;
     public function getId() { return $this->id; }
 /**************************************************************************************************************/
-/* option *****************************************************************************************************/
-    private $option;
-	public function setOption (AppConfigOptions $option =null) { $this->option = $option; /*return $this;*/ }
-	public function getOption() { return $this->option; } 
+/* options ****************************************************************************************************/
+    private $options;
+	public function setOptions (AppConfigOptions $options = null) { $this->options = $options; return $this; }
+	public function getOptions() { return $this->options; } 
 /**************************************************************************************************************/
 /* name *******************************************************************************************************/
 	private $name;
-	public function setName($name) { $this->name = $name; /*return $this;*/ }
+	public function setName($name) { $this->name = $name; return $this; }
 	public function getName() { return $this->name; }
+/**************************************************************************************************************/
+/* type *******************************************************************************************************/
+	private $type;
+	public function setType($type) { $this->type = $type; return $this; }
+	public function getType() { return $this->type; }
 /**************************************************************************************************************/
 }

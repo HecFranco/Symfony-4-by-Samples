@@ -23,16 +23,20 @@ namespace App\Controller;
     use App\Entity\AppConfig; 
     use App\Entity\AppConfigOptions;    
 /*************************************************************************************************************/
+    use App\Service\LoadAppConfigDataBase;
+
 class SecurityController extends Controller {
     private $session;
     public function __construct(){ $this->session = new Session(); }
     
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, loadAppConfigDataBase $appConfigDataBase) {
         /* Initial Charge ************************************************************************************/
             $em = $this->getDoctrine()->getManager();
             $userLogged = $this->getUser();
             $controllerName = "Register" ;
         /*****************************************************************************************************/
+            $existDataBase = $appConfigDataBase->existAppConfigDataBase($em);
+            if($existDataBase == true){ return $this->redirectToRoute('homepage'); }
         /* Position the Repositories  ************************************************************************/
             $appConfig_repo = $em->getRepository(AppConfig::class);
             $appConfigOptions_repo = $em->getRepository(AppConfigOptions::class);
@@ -71,9 +75,9 @@ class SecurityController extends Controller {
             $user->setPassword($password);
             $user->setRole($role);
             // 4) save the User!
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);            
-            $entityManager->flush();
+            // $em = $this->getDoctrine()->getManager();
+            $em->persist($user);            
+            $em->flush();
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
             $this->forward('App\Controller\SecurityController::sendEmailRegister', array(
@@ -159,6 +163,7 @@ class SecurityController extends Controller {
         /*****************************************************************************************************/
         return new Response(json_encode($user_exist)); // we encode the answer in JSON
     }
+
     public function sendEmailRegister(Request $request, /*$name, $sendToEmail, $sendFromEmail, */\Swift_Mailer $mailer) {
         $name = 'hector'; 
         $sendToEmail = 'hector.franco.aceituno@gmail.com';
@@ -204,9 +209,6 @@ class SecurityController extends Controller {
             </body>
         </html>');
     }
-
-
-
     public function test(Request $request) {
         /* Initial Charge ************************************************************************************/
             $em = $this->getDoctrine()->getManager();

@@ -24,15 +24,19 @@ App\Entity\AppConfig:
         name:
             type: string
             length: 150
-            #options:
-            #    fixed: false
             nullable: false
             unique: false
-            column: name                    
+            column: name  
+        type:
+            type: string
+            length: 30
+            nullable: false
+            unique: false
+            column: type                                
 # /fields #############################################################
 # manyToOne ###########################################################          
     manyToOne:      
-        option:
+        options:
             targetEntity: App\Entity\AppConfigOptions      
             cascade: {  }
             fetch: LAZY
@@ -40,7 +44,7 @@ App\Entity\AppConfig:
             mappedBy: null
             inversedBy: null
             joinColumns:
-                option:
+                options:
                     referencedColumnName: id
             orphanRemoval: false
 # /manyToOne ##########################################################            

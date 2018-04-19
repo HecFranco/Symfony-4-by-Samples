@@ -5,7 +5,7 @@
     {# It is necessary to declare the variable before the loop so that it is global#}
     {% set first_user = "" %}
     {% for key, value in appConfig if value.name == "first_user" %}
-        {% set first_user = value.option.name %}
+        {% set first_user = value.options.name %}
     {% endfor %}
     <section class="row h-100">
         <div id="message" class="w-100 p-3 position-absolute d-none" style="left:0px;">
@@ -84,14 +84,22 @@
                                                         <div class="col-md-12">
                                                             {{ form_start(form_register) }}
                                                             {% for config in appConfig %}
-                                                                <label class="col-md-12" for="{{config.name}}">{{config.name}}</label>
-                                                                {% set option_disable = false %}
-                                                                {% if config.appConfigOptionsList|length <= 1 %} {% set option_disable = true %} {% endif %}
-                                                                <select class="col-md-12" name="app_config_{{config.name}}"  {% if option_disable == true %}disabled{% endif %}>
-                                                                    {% for option in config.appConfigOptionsList %}
-                                                                        <option value="{{option.name}}">{{option.name}}</option>
-                                                                    {% endfor %}
-                                                                </select>
+                                                                {% if config.type != "hidden" %}
+                                                                    <div class= "form-group">
+                                                                        <label class="col-md-12" for="{{config.name}}">{{config.name}}</label>
+                                                                        {% if config.type == "options" %}
+                                                                            {% set option_disable = false %}
+                                                                            {% if config.appConfigOptionsList|length <= 1 %} {% set option_disable = true %} {% endif %}
+                                                                            <select class="col-md-12 form-control" name="app_config_{{config.name}}"  {% if option_disable == true %}disabled{% endif %}>
+                                                                                {% for option in config.appConfigOptionsList %}
+                                                                                    <option value="{{option.name}}">{{option.name}}</option>
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                        {% elseif config.type == "text" %} 
+                                                                            <input class="col-md-12 form-control" name="app_config_{{config.name}}"/>
+                                                                        {% endif %}  
+                                                                    </div>  
+                                                                {% endif %}
                                                             {% endfor %}
                                                         </div>
                                                         <ul class="pager wizard">

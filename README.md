@@ -8,7 +8,7 @@ Learning Symfony 4 by samples, each of the samples contains a **README.md** and 
 ### [01 Sample Installation](/00_Quick_Start/01_Sample_Installation/)
 We will make our frist installation from scratch **Project Symfony 4**.
 
-### [02 Sample Instllation Using Git](/00_Quick_Start/02_Sample_Instllation_Using_Git)
+### [02 Sample Installation Using Git](/00_Quick_Start/02_Sample_Installation_Using_Git)
 We will make our installation from scratch **Project Symfony 4** using **Git**.
 
 ### [03 Frist Page](/00_Quick_Start/03_Frist_Page)
@@ -42,7 +42,7 @@ We will do an installation from the beginning where we will include **Webpack En
 
 ## [06 Security](/06_Form/)
 
-### [03 Form Using Webpack Encore with React, TypeScript, Bootstrap and SASS](/07_Security/03_Form_Using_Webpack_Encore_with_React_SASS_TypeScript_and_Bootstrap)
+### [03 Form Using Webpack Encore with React, TypeScript, Bootstrap and SASS](/06_Security/03_Form_Using_Webpack_Encore_with_React_SASS_TypeScript_and_Bootstrapp)
 
 ## [07 Security](/07_Security/)
 

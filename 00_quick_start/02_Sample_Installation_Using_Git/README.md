@@ -27,7 +27,8 @@ git add .
 
 # Summary of Symfony components to use
 
-* Server Component,`composer require server --dev`
+* [Server Component](https://symfony.com/doc/current/setup.html), `composer require server --dev`
+* [Profiler Component](https://symfony.com/doc/current/profiler.html), `composer require --dev profiler`
 
 # First page
 
@@ -95,3 +96,7 @@ php bin/console server:run
 ```
 
 5. Finally, you will have click in next link [http://127.0.0.1:8000](http://127.0.0.1:8000) to view your installation project.
+
+The final result is three React cards that fill the available space on the page.
+
+![Final Result](../../99_Readme_Resources/00_Quick_Start/02_Sample_Installation_Using_Git/final-result.jpg)

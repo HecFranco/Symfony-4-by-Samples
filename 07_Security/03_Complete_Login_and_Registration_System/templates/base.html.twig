@@ -1,7 +1,7 @@
 {# appConfig .............................................................................................. #}
     {% set app_name = "" %}    
     {% for key, value in appConfig if value.name == "app_name" %}
-        {% set app_name = value.option.name %}
+        {% set app_name = value.options.name %}
     {% endfor %}
 {# .............................................................................................. appConfig #}    
 <!DOCTYPE html>
