@@ -1281,7 +1281,7 @@ Cuando lo tengamos podremos ver los cambios en: **[http://127.0.0.1:8000/ejemplo
 
 ![TestController_showRoutingExample_1](readme/captures/TestController_showRoutingExample_1.jpg)
 
-Este cambio no afecta al funcionamiento del **controlador**. En la siguiente sección, se explican los **helpers** o métodos útiles que la clase base del controlador pone a tu disposición. Estos métodos sólo son atajos para utilizar más fácilmente las funcionalidades del núcleo de Symfony. Una buena manera de aprender en la práctica esas funcionalidades del núcleo es ver el código fuente de esa clase base en el archivo **Symfony\Controller\Controller**.
+Este cambio no afecta al funcionamiento del **controlador**. En la siguiente sección, se explican los **helpers** o métodos útiles que la clase base del controlador pone a tu disposición. Estos métodos sólo son atajos para utilizar más fácilmente las funcionalidades del núcleo de Symfony. Una buena manera de aprender en la práctica esas funcionalidades del núcleo es ver el código fuente de esa clase base en el archivo **Symfony\Bundle\FrameworkBundle\Controller\Controller**.
 
 ----------------------------------------------------------------------------------------------------------
 

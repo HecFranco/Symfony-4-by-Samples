@@ -5,6 +5,7 @@ We will create a **Basic Controller**. A Controller is a PHP function that creat
 # Phases of the Demo
 1. [Project Creation](#project_creation)
 2. [Basic Controller](#2basic_controller)
+3. [Basic Controller with a Parameter Default](#3basic_controller_with_a_parameter_default)
 
 ---------------------------------------------------------------------------------------
 
@@ -169,3 +170,7 @@ class DemoController {
 ++ }    
 }
 ```
+
+When we have it we can see the changes in: **[http://127.0.0.1:8000/example-controller-with-variable-default/Luis/sanchez] (http://127.0.0.1:8000/example-controller-with-variable-default/Luis/sanchez) **
+
+![Test_Controller_Controller_show_Controller_With_Variable_Default](../../99_Readme_Resources/02_Controller/01_Basic_Controller/basic-controller-variable-default.jpg)
