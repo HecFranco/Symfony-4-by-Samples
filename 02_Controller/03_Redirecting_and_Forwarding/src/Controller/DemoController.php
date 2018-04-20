@@ -15,13 +15,16 @@ class DemoController extends Controller {
     return new Response('Example of controller with three variables, two per route: '.$firstName.' Y '.$lastName.', and one by default.'.$color);
 
   } 
-  public function exampleControllerRedirectExternalUrl(request $request) {
+  public function exampleControllerRedirectExternalUrl() {
     // Redirect to an external url
     return $this->redirect('http://symfony.com/doc');
   } 
-  public function exampleControllerRedirectInternalUrl(request $request) {
+  public function exampleControllerRedirectInternalUrl_generateUrl() {
     // The generateUrl() method is just an auxiliary method that generates the URL for a particular route:
     $url = $this->generateUrl('example_controller_with_variable', array('slug' => 'hello'));
-    return $this->redirectToRoute($url);
-  }    
+    return $this->redirect($url);
+  }   
+  public function exampleControllerRedirectInternalUrl_redirectToRoute() {
+    return $this->redirectToRoute('example_controller_with_variable', array('slug' => 'hello'));
+  } 
 }

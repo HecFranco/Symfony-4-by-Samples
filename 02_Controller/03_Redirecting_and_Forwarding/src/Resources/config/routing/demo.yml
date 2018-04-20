@@ -9,6 +9,10 @@ example_controller_with_variable_default:
 example_controller_redirect_external_url:
     path: /exampleControllerRedirectExternalUrl/
     controller: App\Controller\DemoController::exampleControllerRedirectExternalUrl
-example_controller_redirect_internal_url:    
-    path: /exampleControllerRedirectInternalUrl/
-    controller: App\Controller\DemoController::exampleControllerRedirectInternalUrl
+example_controller_redirect_internal_url_generateUrl:    
+    path: /exampleControllerRedirectInternalUrl_generateUrl/
+    controller: App\Controller\DemoController::exampleControllerRedirectInternalUrl_generateUrl     
+example_controller_redirect_internal_url_redirectToRoute:    
+    path: /exampleControllerRedirectInternalUrl_redirectToRoute/
+    controller: App\Controller\DemoController::exampleControllerRedirectInternalUrl_redirectToRoute
+  

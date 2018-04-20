@@ -52,6 +52,19 @@ npm install
 
 Although a controller can do anything, most controllers always handle the same basic tasks. These tasks, such as **redirect** to another page, **process Templates** and **basic services**, are easy to manage in Symfony.
 
+For use this functions you need add next **Symfony Components**:
+
+```php
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+```
+
+and extends the class 
+
+```php
+class DemoController extends Controller 
+```
+
 If you want to use another page, use the `redirect()` method to redirect to an external page:
 
 _[./src/Controller/DefaultController.php](./src/Controller/DefaultController.php)_
@@ -63,8 +76,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 ++ use Symfony\Component\HttpFoundation\RedirectResponse;
+++ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DemoController {
+-- class DemoController {
+++ class DemoController extends Controller {  
   public function showControllerWithVariable(request $request, $slug) {
     var_dump($request);die();
     return new Response('Controller example with variable value $ slug:'.$slug);
@@ -80,9 +95,9 @@ class DemoController {
 }
 ```
 
-The `generateUrl()` method is just an auxiliary function that generates the URL of a certain route. For more information, see the routing chapter. 
+The `generateUrl()` method is just an auxiliary function that generates the URL of a certain route. For more information, see the routing demos [here](../../01_Routing). 
 
-**IMPORTANT**: It's neccesary add the component `Symfony\Component\HttpFoundation\RedirectResponse` typing the line `use Symfony\Component\HttpFoundation\RedirectResponse;`
+**IMPORTANT**: It's neccesary add the components `Symfony\Component\HttpFoundation\RedirectResponse` and `Symfony\Bundle\FrameworkBundle\Controller\Controller` typing the lines `use Symfony\Component\HttpFoundation\RedirectResponse;` and `use Symfony\Bundle\FrameworkBundle\Controller\Controller;`. In addition, you must **extends** the **controller** change the line `class DemoController {` for `class DemoController extends Controller {`.
 
 _[./src/Controller/DefaultController.php](./src/Controller/DefaultController.php)_
 ```diff
@@ -93,8 +108,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DemoController {
+class DemoController extends Controller {
   public function showControllerWithVariable(request $request, $slug) {
     var_dump($request);die();
     return new Response('Controller example with variable value $ slug:'.$slug);
@@ -125,4 +141,13 @@ example_controller_with_variable_default:
     controller: App\Controller\DemoController::showControllerWithVariableDefault
 #    defaults:
 #        color: green
+++ example_controller_redirect_external_url:
+++     path: /exampleControllerRedirectExternalUrl/
+++     controller: App\Controller\DemoController::exampleControllerRedirectExternalUrl
+++ example_controller_redirect_internal_url_generateUrl:    
+++     path: /exampleControllerRedirectInternalUrl_generateUrl/
+++     controller: App\Controller\DemoController::exampleControllerRedirectInternalUrl_generateUrl     
+++ example_controller_redirect_internal_url_redirectToRoute:    
+++     path: /exampleControllerRedirectInternalUrl_redirectToRoute/
+++     controller: App\Controller\DemoController::exampleControllerRedirectInternalUrl_redirectToRoute
 ```
