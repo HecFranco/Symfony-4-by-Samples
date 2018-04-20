@@ -1,0 +1,4 @@
+app_routing_folder:
+    # load routes from a directory with routers stored in yml files
+    resource: '..\src\Resources\config\routing\'
+    type: directory    

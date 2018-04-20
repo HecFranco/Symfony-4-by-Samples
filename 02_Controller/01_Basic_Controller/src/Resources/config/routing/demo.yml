@@ -1,0 +1,8 @@
+example_controller_with_variable:
+    path: /example-controller-with-variable/{slug}
+    controller: App\Controller\DemoController::showControllerWithVariable
+example_controller_with_variable_default:
+    path: example-controller-with-variable-default/{firstName}/{lastName}
+    controller: App\Controller\DemoController::showControllerWithVariableDefault
+#    defaults:
+#        color: green 
