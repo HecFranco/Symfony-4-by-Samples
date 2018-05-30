@@ -15,6 +15,7 @@ For Windows we will have to download the installer from the web page: [https://g
 You can view yout version of Git in the console writting:
 
 ```bash
+git init
 git status
 git add .
 ```
