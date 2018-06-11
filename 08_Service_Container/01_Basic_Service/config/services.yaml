@@ -23,12 +23,5 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # App\Controller\BlogController: ['@App\Service\Greeting']
-
-    # App\Service\Greeting: ['@monolog.logger']
-
-    app.greeting:
-        public: true
-        alias: App\Service\Greeting
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
