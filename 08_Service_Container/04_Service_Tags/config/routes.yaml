@@ -1,0 +1,9 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+response:
+    path: /response/
+    controller: App\Controller\BlogController::response
+twig:
+    path: /twig/
+    controller: App\Controller\BlogController::twig

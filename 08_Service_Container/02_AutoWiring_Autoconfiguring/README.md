@@ -35,7 +35,7 @@ We will take as a starting point [01 Basic Service](../01_Basic_Service/):
 2. Installs **Composer** and its dependencies from the previous phase: 
 
 ```bash
-composer install
+composer update
 ```
 
 --------------------------------------------------------------------------------------------
