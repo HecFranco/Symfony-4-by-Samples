@@ -7,7 +7,7 @@ In Symfony, these useful objects are called services and each service lives insi
 
 # Phases of the Demo
 1. [Project Creation](#1project-creation)
-2. [Project Creation](#2basic-service)
+2. [Basic Service](#2basic-service)
 
 ---------------------------------------------------------------------------------------
 
@@ -276,3 +276,11 @@ Finally we have it we can see the changes in: **[http://127.0.0.1:8000/twig/?nam
 > We can access to Toolbar Profile of symfony and inside of Log view the next image.
 
 ![symfony_profile_log_message](../../99_Readme_Resources/08_Service_Container/01_Basic_Service/symfony_profile_log_message.jpg)
+
+> We can also use the `php bin/console debug:autowiring`, `php bin/console debug:autowiring LoggerInterface` or `php bin/console debug:autowiring monolog.logger` commands to see the status of the containers available in the project.
+
+```bash
+php bin/console debug:autowiring
+```
+
+(Source: [Service Container](https://symfony.com/doc/current/service_container.html))
