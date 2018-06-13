@@ -1,0 +1,5 @@
+app_routing_folder:
+    # loads routes from the given routing file stored in some bundle
+    # prefix: '/api/v1'    
+    resource: 'routing\' 
+    type: directory

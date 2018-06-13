@@ -1,0 +1,12 @@
+register:
+    path: /register
+    controller: App\Controller\SecurityController::register
+    methods: POST
+
+api:
+    path: /api
+    controller: App\Controller\SecurityController::api
+
+login_check:
+    path:     /login_check
+    methods:  [POST]
