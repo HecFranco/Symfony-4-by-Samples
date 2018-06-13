@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <body>
+    {% block body %}
+      {#
+      <h1>The message is {{message|upper}}</h1>
+      #}
+      {#
+      <h1>
+        The message is 
+        {% filter upper %}
+          {{message}}
+        {% endfilter %}
+      </h1>
+      #}
+      <h1>{{message|escape}}</h1>
+      <p>The absolute number of {{number}} is {{ number|abs }} </p>
+      <p>Publish at {{ published_at|date("d/m/Y") }} - now is {{ "now"|date("d/m/Y H:i:s") }}</p>
+    {% endblock %}
+    {% block javascripts %}{% endblock %}
+  </body>
+</html>

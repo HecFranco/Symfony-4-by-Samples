@@ -12,6 +12,10 @@ We will created a little web using **Basic Routing** using the **yml** routing t
 
 * Server Component, `composer require server --dev`
 
+# Command Console
+
+* `php bin/console debug:router`
+
 # Basic Routing
 
 1. Created our project using the Console command's, 

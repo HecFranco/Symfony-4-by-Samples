@@ -1,0 +1,6 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+twig:
+    path: /twig/
+    controller: App\Controller\BlogController::twig
