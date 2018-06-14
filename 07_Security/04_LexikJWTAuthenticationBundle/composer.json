@@ -12,6 +12,7 @@
         "symfony/lts": "^4@dev",
         "symfony/orm-pack": "^1.0",
         "symfony/security": "^4.1",
+        "symfony/validator": "^4.1",
         "symfony/var-dumper": "^4.1",
         "symfony/web-server-bundle": "^4.1",
         "symfony/yaml": "^4.1"

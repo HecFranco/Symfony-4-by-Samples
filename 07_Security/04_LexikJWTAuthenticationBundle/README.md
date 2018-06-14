@@ -11,7 +11,8 @@
 * [Security Component](https://symfony.com/doc/4.0/components/security.html), `composer require symfony/security`
 * [](), `composer require symfony/orm-pack`
 * [](), `composer require symfony/web-server-bundle`
-* [](), `composer require symfony/var-dumper`
+* [Var-dumper Component](https://symfony.com/doc/current/components/var_dumper.html), `composer require var-dumper`
+* [Validator Component](https://symfony.com/doc/current/components/validator.html), `composer require validator`
 
 ## Sources
 
@@ -23,6 +24,7 @@
 ### Bundles
 
 * [LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle), using the next command to install it `composer require lexik/jwt-authentication-bundle`
+* [JWTRefreshTokenBundle](https://github.com/gesdinet/JWTRefreshTokenBundle),
 
 _[config/bundles.php](./config/bundles.php)_
 ```diff
@@ -41,6 +43,11 @@ Generate the SSH keys :
 mkdir -p config/jwt # For Symfony4, no need of the -p option
 openssl genrsa -out config/jwt/private.pem -aes256 4096
 openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
+```
+
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --force
 ```
 
 _[config/packages/security.yaml](./config/packages/security.yaml)_

@@ -13,8 +13,8 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            anonymous: true
+        # main:
+            # anonymous: true
 
             # activate different ways to authenticate
 
@@ -25,16 +25,16 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             
         login:
-            pattern:  ^/login
+            pattern:  ^/api/login
             stateless: true
             anonymous: true
-            json_login:
-                check_path: /login_check
+            form_login:
+                check_path: /api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-
+                require_previous_session: false
         register:
-            pattern:  ^/register
+            pattern:  ^/signup
             stateless: true
             anonymous: true
 
@@ -50,7 +50,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }     
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/profile, roles: ROLE_USER } 
+        - { path: ^/api/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }            
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }       

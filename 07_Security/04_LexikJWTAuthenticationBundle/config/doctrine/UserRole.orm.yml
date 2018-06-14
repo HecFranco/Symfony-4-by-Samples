@@ -1,0 +1,42 @@
+App\Entity\UserRole:
+    type: entity
+    #repositoryClass: App\Repository\UserRoleRepository 
+    table: user_role
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        role_id:
+            columns:
+                - role_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        role:
+            targetEntity: ListRole
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                role_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
