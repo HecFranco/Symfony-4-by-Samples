@@ -1,7 +1,4 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-routing_distributed:
-    # loads routes from the given routing file stored in some bundle
-    resource: '..\src\Resources\config\routing.yml' 
-    type: yaml
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
