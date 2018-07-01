@@ -306,6 +306,7 @@ class ApiController extends FOSRestController
            $code = 201;
            $error = false;
            $name = $request->request->get("name", null);
+           var_dump($name);die();
            $user = $this->getUser();
 
            if (!is_null($name)) {

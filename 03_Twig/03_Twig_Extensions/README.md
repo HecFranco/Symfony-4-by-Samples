@@ -1,9 +1,8 @@
-# Purpose of the Demo - 01 Basic Service
+# Purpose of the Demo - 03 Twig Extension
 
-We will create a **Basic Service**. 
+We will create a ** **. 
 
-> Your application is full of useful objects: a "Mailer" object might help you send emails while another object might help you save things to the database. Almost everything that your app "does" is actually done by one of these objects. And each time you install a new bundle, you get access to even more!
-In Symfony, these useful objects are called services and each service lives inside a very special object called the service container. The container allows you to centralize the way objects are constructed. It makes your life easier, promotes a strong architecture and is super fast!
+> 
 
 # Phases of the Demo
 1. [Project Creation](#1project-creation)
@@ -11,7 +10,7 @@ In Symfony, these useful objects are called services and each service lives insi
 
 ---------------------------------------------------------------------------------------
 
-* We will create the project through the console command: `composer create-project symfony/skeleton 01_Basic_Service`
+* We will create the project through the console command: `composer create-project symfony/skeleton 03_twig_extension`
 
 ---------------------------------------------------------------------------------------
 
@@ -34,13 +33,13 @@ In Symfony, these useful objects are called services and each service lives insi
 1. Created our project using the Console command's, 
 
 ```bash
-composer create-project symfony/skeleton 01_Basic_Service
+composer create-project symfony/skeleton 03_twig_extension
 ```
 
 2. In the next step we will access the project folder using:
 
 ```bash
-cd 01_Basic_Service
+cd 03_twig_extension
 ```
 
 3. Execute `composer update` to install the dependencies defined into [composer.json](./composer.json):
@@ -63,7 +62,7 @@ php bin/console server:run
 
 --------------------------------------------------------------------------------------------
 
-## 2.Basic Service
+## 2.
 
 --------------------------------------------------------------------------------------------
 
