@@ -1,0 +1,11 @@
+{# templates/lucky/number.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <ul class="lang-menu">
+        <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">Español</a></li>
+        <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">English</a></li>
+    </ul>
+    <h1>{{'Your lucky number is' | trans}} {{ number }}</h1>
+{% endblock %}

@@ -6,18 +6,16 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/console": "^4.1",
-        "symfony/debug": "^4.1",
-        "symfony/debug-bundle": "^4.1",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^4.1",
         "symfony/lts": "^4@dev",
+        "symfony/translation": "^4.1",
         "symfony/twig-bundle": "^4.1",
         "symfony/yaml": "^4.1"
     },
     "require-dev": {
         "symfony/dotenv": "^4.1",
         "symfony/profiler-pack": "^1.0",
-        "symfony/var-dumper": "^4.1",
         "symfony/web-server-bundle": "^4.1"
     },
     "config": {
